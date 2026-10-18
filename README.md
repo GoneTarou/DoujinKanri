@@ -256,3 +256,10 @@
 ## 11. 画面遷移図
 
 Figmaリンク：[しめきりノート 画面遷移図](https://www.figma.com/design/yhG1WAezM5kcty4KMoinSd/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3-%E3%81%97%E3%82%81%E3%81%8D%E3%82%8A%E3%83%8E%E3%83%BC%E3%83%88-?node-id=0-1&t=pGR3ChITXqzQXHh2-0)
+
+## 12. ER図
+
+![しめきりノートのER図](ER図.png)
+ER図のURL[https://dbdiagram.io/d/6ad4590afe5cc8bda2e8af6d]
+
+- ゲストユーザーはproviderとuidが未設定かどうかで、ゲストかGoogle認証済みかを判別する。
