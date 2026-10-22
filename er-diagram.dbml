@@ -1,0 +1,88 @@
+Table users {
+  id bigint [pk, increment]
+  provider varchar [note: 'Google認証済みの場合のみ google']
+  uid varchar [note: 'Google認証済みの場合のみ設定']
+
+  Indexes {
+    (provider, uid) [unique]
+  }
+}
+
+Table works {
+  id bigint [pk, increment]
+  user_id bigint [not null]
+  title varchar [not null]
+  work_type varchar [not null, note: 'manga / novel / illustration']
+  start_date date [not null]
+  deadline date [not null]
+  total_quantity integer [not null, note: '1〜999']
+}
+
+Table processes {
+  id bigint [pk, increment]
+  work_id bigint [not null]
+  name varchar [not null]
+  position integer [not null]
+}
+
+Table production_units {
+  id bigint [pk, increment]
+  work_id bigint [not null]
+  kind varchar [not null, note: '漫画は cover または body']
+  position integer [not null]
+}
+
+Table process_checks {
+  id bigint [pk, increment]
+  production_unit_id bigint [not null]
+  process_id bigint [not null]
+  checked boolean [not null, default: false]
+
+  Indexes {
+    (production_unit_id, process_id) [unique]
+  }
+}
+
+Table weekly_availabilities {
+  id bigint [pk, increment]
+  work_id bigint [not null]
+  weekday integer [not null, note: '0〜6']
+  hours integer [not null, note: '0〜24']
+
+  Indexes {
+    (work_id, weekday) [unique]
+  }
+}
+
+Table availability_overrides {
+  id bigint [pk, increment]
+  work_id bigint [not null]
+  available_on date [not null]
+  hours integer [not null, note: '0〜24']
+
+  Indexes {
+    (work_id, available_on) [unique]
+  }
+}
+
+Table daily_targets {
+  id bigint [pk, increment]
+  work_id bigint [not null]
+  target_on date [not null]
+  target_quantity integer [not null]
+
+  Indexes {
+    (work_id, target_on) [unique]
+  }
+}
+
+Ref: users.id < works.user_id
+
+Ref: works.id < processes.work_id
+Ref: works.id < production_units.work_id
+Ref: works.id < weekly_availabilities.work_id
+Ref: works.id < availability_overrides.work_id
+Ref: works.id < daily_targets.work_id
+
+Ref: production_units.id < process_checks.production_unit_id
+Ref: processes.id < process_checks.process_id
