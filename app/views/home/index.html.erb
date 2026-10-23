@@ -12,17 +12,30 @@
     今日進める完成量の目安を確認できる制作計画アプリです。
   </p>
 
-  <div class="mt-10 flex justify-center gap-4">
-    <button class="btn btn-primary btn-lg" disabled>
-      ゲストとして始める
-    </button>
+  <% if user_signed_in? %>
+    <div class="mt-10">
+      <p class="text-lg font-bold text-primary">
+        ゲストとして利用中です
+      </p>
 
-    <button class="btn btn-outline btn-lg" disabled>
-      Googleでログイン
-    </button>
-  </div>
+      <p class="mt-3 text-sm text-base-content/60">
+        作品作成機能の実装後に、ここから制作計画を作成できます。
+      </p>
+    </div>
+  <% else %>
+    <div class="mt-10 flex justify-center gap-4">
+      <%= button_to "ゲストとして始める",
+                    guest_session_path,
+                    method: :post,
+                    class: "btn btn-primary btn-lg" %>
 
-  <p class="mt-4 text-sm text-base-content/60">
-    認証機能の実装後に、ここから制作計画を作成できます。
-  </p>
+      <button class="btn btn-outline btn-lg" disabled>
+        Googleでログイン
+      </button>
+    </div>
+
+    <p class="mt-4 text-sm text-base-content/60">
+      Googleログインは今後対応します。
+    </p>
+  <% end %>
 </section>
