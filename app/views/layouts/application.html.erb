@@ -24,6 +24,18 @@
   </head>
 
   <body>
+    <% if notice.present? %>
+      <div class="alert alert-success mx-auto mt-4 w-full max-w-3xl">
+        <span><%= notice %></span>
+      </div>
+    <% end %>
+
+    <% if alert.present? %>
+      <div class="alert alert-error mx-auto mt-4 w-full max-w-3xl">
+        <span><%= alert %></span>
+      </div>
+    <% end %>
+
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>
