@@ -1,0 +1,30 @@
+<% content_for :title, "作品一覧 | しめきりノート" %>
+
+<section class="mx-auto w-full max-w-4xl">
+  <div class="flex items-center justify-between">
+    <h1 class="text-3xl font-bold">作品一覧</h1>
+
+    <%= link_to "新しい作品を作成",
+                new_work_path,
+                class: "btn btn-primary" %>
+  </div>
+
+  <% if @works.any? %>
+    <ul class="mt-8 space-y-3">
+      <% @works.each do |work| %>
+        <li class="rounded-box border border-base-300 p-4">
+          <%= link_to work.title,
+                      work_path(work),
+                      class: "text-lg font-bold link link-hover" %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <div class="mt-8 rounded-box bg-base-200 p-8 text-center">
+      <p>まだ作品がありません。</p>
+      <p class="mt-2 text-sm text-base-content/60">
+        最初の作品を作成して、制作計画を始めましょう。
+      </p>
+    </div>
+  <% end %>
+</section>
