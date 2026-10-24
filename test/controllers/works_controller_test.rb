@@ -46,4 +46,24 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
     assert_equal user, work.user
     assert_redirected_to work_path(work)
   end
+
+  test "ログイン済みのゲストは自分の作品詳細を開ける" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+
+    get work_path(work)
+
+    assert_response :success
+    assert_select "h1", work.title
+  end
+
+  test "他人の作品詳細は開けない" do
+    sign_in_as_guest
+    other_user = users(:one)
+    work = Work.create!(work_attributes.merge(user: other_user))
+
+    get work_path(work)
+
+    assert_response :not_found
+  end
 end
