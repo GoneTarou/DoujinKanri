@@ -1,0 +1,11 @@
+<% content_for :title, "作品を編集 | しめきりノート" %>
+
+<section class="mx-auto w-full max-w-2xl">
+  <%= link_to "作品詳細へ戻る",
+              work_path(@work),
+              class: "link link-hover text-sm" %>
+
+  <h1 class="mt-6 text-3xl font-bold">作品を編集</h1>
+
+  <%= render "form" %>
+</section>

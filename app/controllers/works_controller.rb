@@ -25,6 +25,14 @@ class WorksController < ApplicationController
   def edit
   end
 
+  def update
+    if @work.update(work_params)
+      redirect_to @work, notice: "作品を更新しました。"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def require_user
