@@ -1,7 +1,6 @@
 class WorksController < ApplicationController
   before_action :require_user
-  before_action :set_work, only: :show
-
+  before_action :set_work, only: [ :show, :edit, :update ]
   def index
     @works = current_user.works
   end
@@ -21,6 +20,9 @@ class WorksController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
   end
 
   private
