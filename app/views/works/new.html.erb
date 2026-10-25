@@ -7,6 +7,20 @@
 
   <h1 class="mt-6 text-3xl font-bold">新しい作品を作成</h1>
 
+  <% if @work.errors.any? %>
+    <div role="alert" class="alert alert-error mt-6">
+      <div>
+        <p class="font-bold">入力内容を確認してください。</p>
+
+        <ul class="mt-2 list-disc pl-5">
+          <% @work.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
   <%= form_with model: @work, class: "mt-8 space-y-6" do |form| %>
     <div>
       <%= form.label :title, "作品名", class: "label" %>
