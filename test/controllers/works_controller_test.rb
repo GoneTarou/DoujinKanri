@@ -105,4 +105,33 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
     assert_select "h1", "作品を編集"
     assert_select "input[name='work[title]'][value='冬コミ新刊']"
   end
+
+  test "ログイン済みのゲストは自分の作品を更新できる" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+
+    patch work_path(work), params: {
+      work: {
+        title: "冬コミ新刊 改訂版",
+        total_quantity: 24
+      }
+    }
+
+    assert_redirected_to work_path(work)
+
+    work.reload
+    assert_equal "冬コミ新刊 改訂版", work.title
+    assert_equal 24, work.total_quantity
+  end
+
+  test "ログイン済みのゲストは自分の作品を削除できる" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+
+    assert_difference -> { Work.count }, -1 do
+      delete work_path(work)
+    end
+
+    assert_redirected_to works_path
+  end
 end
