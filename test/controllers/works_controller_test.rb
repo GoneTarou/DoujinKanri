@@ -94,4 +94,15 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
     assert_select "h1", "新しい作品を作成"
     assert_select "[role='alert']"
   end
+
+  test "ログイン済みのゲストは自分の作品の編集画面を開ける" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+
+    get edit_work_path(work)
+
+    assert_response :success
+    assert_select "h1", "作品を編集"
+    assert_select "input[name='work[title]'][value='冬コミ新刊']"
+  end
 end

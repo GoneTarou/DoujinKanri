@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   devise_for :users, skip: :all
   resource :guest_session, only: :create
-  resources :works, only: [:index, :new, :create, :show]
-
+  resources :works, only: [ :index, :new, :create, :show, :edit, :update ]
   root "home#index"
 end
