@@ -21,5 +21,17 @@
       <dt class="font-semibold text-base-content/70">締切</dt>
       <dd><%= l @work.deadline %></dd>
     </dl>
+
+    <div class="mt-8 flex gap-3">
+      <%= link_to "編集",
+                  edit_work_path(@work),
+                  class: "btn btn-outline" %>
+
+      <%= button_to "削除",
+                    work_path(@work),
+                    method: :delete,
+                    data: { turbo_confirm: "「#{@work.title}」を削除しますか？" },
+                    class: "btn btn-error" %>
+    </div>
   </div>
 </section>

@@ -157,7 +157,6 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
 
     assert_select "form[action='#{work_path(work)}'][method='post']" do
       assert_select "input[name='_method'][value='delete']"
-      assert_select "input[type='submit'][value='削除']"
-    end
+      assert_select "button[type='submit']", "削除"    end
   end
 end

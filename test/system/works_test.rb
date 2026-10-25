@@ -26,6 +26,23 @@ class WorksTest < ApplicationSystemTestCase
     assert_text "作品を作成しました。"
     assert_text "冬コミ新刊"
     assert_text "20"
+
+    click_link "編集"
+
+    fill_in "作品名", with: "冬コミ新刊 改訂版"
+
+    click_button "作品を更新する"
+
+    assert_text "作品を更新しました。"
+    assert_text "冬コミ新刊 改訂版"
+
+    accept_confirm "「冬コミ新刊 改訂版」を削除しますか？" do
+      click_button "削除"
+    end
+
+    assert_text "作品を削除しました。"
+    assert_text "まだ作品がありません。"
+
   end
 
   private
