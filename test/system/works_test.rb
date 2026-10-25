@@ -42,7 +42,6 @@ class WorksTest < ApplicationSystemTestCase
 
     assert_text "作品を削除しました。"
     assert_text "まだ作品がありません。"
-
   end
 
   private
