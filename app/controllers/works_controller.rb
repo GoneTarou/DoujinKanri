@@ -6,7 +6,10 @@ class WorksController < ApplicationController
   end
 
   def new
-    @work = current_user.works.build
+    @work = current_user.works.build(
+      work_type: "manga",
+      title: "新しい漫画"
+    )
   end
 
   def create

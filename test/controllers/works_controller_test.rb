@@ -159,4 +159,12 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
       assert_select "input[name='_method'][value='delete']"
       assert_select "button[type='submit']", "削除"    end
   end
+
+  test "作品作成フォームには新しい漫画という初期作品名を表示する" do
+    sign_in_as_guest
+
+    get new_work_path
+
+    assert_select "input[name='work[title]'][value='新しい漫画']"
+  end
 end
