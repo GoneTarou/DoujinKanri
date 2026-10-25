@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  title: MyString
+  work_type: MyString
+  total_quantity: 1
+  start_date: 2026-10-24
+  deadline: 2026-10-24
+
+two:
+  user: two
+  title: MyString
+  work_type: MyString
+  total_quantity: 1
+  start_date: 2026-10-24
+  deadline: 2026-10-24

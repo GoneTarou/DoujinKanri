@@ -1,0 +1,11 @@
+<% content_for :title, "新しい作品を作成 | しめきりノート" %>
+
+<section class="mx-auto w-full max-w-2xl">
+  <%= link_to "作品一覧へ戻る",
+              works_path,
+              class: "link link-hover text-sm" %>
+
+  <h1 class="mt-6 text-3xl font-bold">新しい作品を作成</h1>
+
+  <%= render "form" %>
+</section>

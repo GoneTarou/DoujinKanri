@@ -1,0 +1,37 @@
+<% content_for :title, "#{@work.title} | しめきりノート" %>
+
+<section class="mx-auto w-full max-w-4xl">
+  <%= link_to "作品一覧へ戻る",
+              works_path,
+              class: "link link-hover text-sm" %>
+
+  <div class="mt-6 rounded-box border border-base-300 p-8">
+    <h1 class="text-3xl font-bold"><%= @work.title %></h1>
+
+    <dl class="mt-8 grid grid-cols-2 gap-x-6 gap-y-4">
+      <dt class="font-semibold text-base-content/70">作品種別</dt>
+      <dd><%= @work.work_type %></dd>
+
+      <dt class="font-semibold text-base-content/70">総量</dt>
+      <dd><%= @work.total_quantity %></dd>
+
+      <dt class="font-semibold text-base-content/70">制作開始日</dt>
+      <dd><%= l @work.start_date %></dd>
+
+      <dt class="font-semibold text-base-content/70">締切</dt>
+      <dd><%= l @work.deadline %></dd>
+    </dl>
+
+    <div class="mt-8 flex gap-3">
+      <%= link_to "編集",
+                  edit_work_path(@work),
+                  class: "btn btn-outline" %>
+
+      <%= button_to "削除",
+                    work_path(@work),
+                    method: :delete,
+                    data: { turbo_confirm: "「#{@work.title}」を削除しますか？" },
+                    class: "btn btn-error" %>
+    </div>
+  </div>
+</section>
