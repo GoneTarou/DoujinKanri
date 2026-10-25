@@ -1,6 +1,6 @@
 class WorksController < ApplicationController
   before_action :require_user
-  before_action :set_work, only: [ :show, :edit, :update ]
+  before_action :set_work, only: [ :show, :edit, :update, :destroy ]
   def index
     @works = current_user.works
   end
@@ -31,6 +31,12 @@ class WorksController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @work.destroy!
+
+    redirect_to works_path, notice: "作品を削除しました。"
   end
 
   private
