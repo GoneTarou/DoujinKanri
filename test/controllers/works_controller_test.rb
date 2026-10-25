@@ -80,4 +80,18 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
     assert_select "input[name='work[start_date]']"
     assert_select "input[name='work[deadline]']"
   end
+
+  test "作品作成に失敗した場合はフォームとエラーを表示する" do
+    sign_in_as_guest
+
+    assert_no_difference -> { Work.count } do
+      post works_path, params: {
+        work: work_attributes.merge(total_quantity: 0)
+      }
+    end
+
+    assert_response :unprocessable_entity
+    assert_select "h1", "新しい作品を作成"
+    assert_select "[role='alert']"
+  end
 end

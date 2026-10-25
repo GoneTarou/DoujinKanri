@@ -1,0 +1,44 @@
+<% content_for :title, "新しい作品を作成 | しめきりノート" %>
+
+<section class="mx-auto w-full max-w-2xl">
+  <%= link_to "作品一覧へ戻る",
+              works_path,
+              class: "link link-hover text-sm" %>
+
+  <h1 class="mt-6 text-3xl font-bold">新しい作品を作成</h1>
+
+  <%= form_with model: @work, class: "mt-8 space-y-6" do |form| %>
+    <div>
+      <%= form.label :title, "作品名", class: "label" %>
+      <%= form.text_field :title, class: "input input-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :work_type, "作品種別", class: "label" %>
+      <%= form.select :work_type,
+                      [["漫画", "manga"], ["小説", "novel"], ["イラスト", "illustration"]],
+                      {},
+                      class: "select select-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :total_quantity, "総量", class: "label" %>
+      <%= form.number_field :total_quantity,
+                            min: 1,
+                            max: 999,
+                            class: "input input-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :start_date, "制作開始日", class: "label" %>
+      <%= form.date_field :start_date, class: "input input-bordered w-full" %>
+    </div>
+
+    <div>
+      <%= form.label :deadline, "締切", class: "label" %>
+      <%= form.date_field :deadline, class: "input input-bordered w-full" %>
+    </div>
+
+    <%= form.submit "作品を作成する", class: "btn btn-primary w-full" %>
+  <% end %>
+</section>
