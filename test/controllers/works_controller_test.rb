@@ -134,4 +134,30 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to works_path
   end
+
+  test "他人の作品は削除できない" do
+    sign_in_as_guest
+    other_user = users(:one)
+    work = Work.create!(work_attributes.merge(user: other_user))
+
+    assert_no_difference -> { Work.count } do
+      delete work_path(work)
+    end
+
+    assert_response :not_found
+  end
+
+  test "作品詳細に編集と削除の操作を表示する" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+
+    get work_path(work)
+
+    assert_select "a[href='#{edit_work_path(work)}']", "編集"
+
+    assert_select "form[action='#{work_path(work)}'][method='post']" do
+      assert_select "input[name='_method'][value='delete']"
+      assert_select "input[type='submit'][value='削除']"
+    end
+  end
 end
