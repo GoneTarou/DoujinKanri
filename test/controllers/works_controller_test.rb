@@ -66,4 +66,18 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :not_found
   end
+
+  test "ログイン済みのゲストは作品作成フォームを開ける" do
+    sign_in_as_guest
+
+    get new_work_path
+
+    assert_response :success
+    assert_select "h1", "新しい作品を作成"
+    assert_select "input[name='work[title]']"
+    assert_select "select[name='work[work_type]']"
+    assert_select "input[name='work[total_quantity]']"
+    assert_select "input[name='work[start_date]']"
+    assert_select "input[name='work[deadline]']"
+  end
 end

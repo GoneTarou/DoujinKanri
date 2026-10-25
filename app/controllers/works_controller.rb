@@ -6,6 +6,10 @@ class WorksController < ApplicationController
     @works = current_user.works
   end
 
+  def new
+    @work = current_user.works.build
+  end
+
   def create
     @work = current_user.works.build(work_params)
 
