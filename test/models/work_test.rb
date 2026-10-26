@@ -95,4 +95,18 @@ class WorkTest < ActiveSupport::TestCase
     assert_not work.valid?
     assert work.errors[:deadline].present?
   end
+
+  test "漫画を作成すると標準工程が順番に作成される" do
+    work = Work.create!(
+      user: users(:one),
+      title: "新しい漫画",
+      work_type: "manga",
+      total_quantity: 10,
+      start_date: Date.new(2026, 10, 24),
+      deadline: Date.new(2026, 12, 10)
+    )
+
+    assert_equal [ "ネーム", "下書き", "ペン入れ", "仕上げ" ],
+                work.work_processes.order(:position).pluck(:name)
+  end
 end

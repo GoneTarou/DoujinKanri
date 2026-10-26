@@ -1,5 +1,14 @@
 class Work < ApplicationRecord
+  DEFAULT_WORK_PROCESS_NAMES = {
+    "manga" => [ "ネーム", "下書き", "ペン入れ", "仕上げ" ],
+    "novel" => [ "プロット", "本文", "推敲", "最終確認" ],
+    "illustration" => [ "ラフ", "下書き", "線画", "色塗り", "仕上げ" ]
+  }.freeze
+
   belongs_to :user
+  has_many :work_processes, -> { order(:position) }, dependent: :destroy
+
+  after_create :create_default_work_processes
 
   enum :work_type, {
     manga: "manga",
@@ -25,5 +34,14 @@ class Work < ApplicationRecord
     return if deadline >= start_date
 
     errors.add(:deadline, "は開始日以降にしてください")
+  end
+
+  def create_default_work_processes
+    DEFAULT_WORK_PROCESS_NAMES.fetch(work_type).each_with_index do |name, index|
+      work_processes.create!(
+        name: name,
+        position: index + 1
+      )
+    end
   end
 end
