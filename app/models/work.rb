@@ -7,8 +7,10 @@ class Work < ApplicationRecord
 
   belongs_to :user
   has_many :work_processes, -> { order(:position) }, dependent: :destroy
+  has_many :production_units, -> { order(:position) }, dependent: :destroy
 
   after_create :create_default_work_processes
+  after_create :create_production_units
 
   enum :work_type, {
     manga: "manga",
@@ -42,6 +44,12 @@ class Work < ApplicationRecord
         name: name,
         position: index + 1
       )
+    end
+  end
+
+  def create_production_units
+    total_quantity.times do |index|
+      production_units.create!(position: index + 1)
     end
   end
 end

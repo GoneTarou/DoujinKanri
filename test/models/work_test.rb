@@ -131,4 +131,12 @@ class WorkTest < ActiveSupport::TestCase
     assert_equal [ "ラフ", "下書き", "線画", "色塗り", "仕上げ" ],
                 work.work_processes.pluck(:name)
   end
+
+  test "作品を作成すると総量分の制作対象が順番に作成される" do
+    work = build_work(total_quantity: 3)
+    work.save!
+
+    assert_equal [ 1, 2, 3 ],
+                work.production_units.order(:position).pluck(:position)
+  end
 end
