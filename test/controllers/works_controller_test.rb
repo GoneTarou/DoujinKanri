@@ -167,4 +167,26 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
 
     assert_select "input[name='work[title]'][value='新しい漫画']"
   end
+
+  test "作品詳細に標準工程を表示する" do
+    user = sign_in_as_guest
+
+    work = Work.create!(
+      user: user,
+      title: "冬コミ新刊",
+      work_type: "manga",
+      total_quantity: 10,
+      start_date: Date.new(2026, 10, 24),
+      deadline: Date.new(2026, 12, 10)
+    )
+
+    get work_path(work)
+
+    assert_response :success
+    assert_select "h2", "工程"
+    assert_select "ol li", "ネーム"
+    assert_select "ol li", "下書き"
+    assert_select "ol li", "ペン入れ"
+    assert_select "ol li", "仕上げ"
+  end
 end

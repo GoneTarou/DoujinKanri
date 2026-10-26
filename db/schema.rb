@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_24_074555) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_26_093540) do
+  create_table "production_units", force: :cascade do |t|
+    t.integer "work_id", null: false
+    t.integer "position", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["work_id", "position"], name: "index_production_units_on_work_id_and_position", unique: true
+    t.index ["work_id"], name: "index_production_units_on_work_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
@@ -18,6 +27,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_24_074555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
+  end
+
+  create_table "work_processes", force: :cascade do |t|
+    t.integer "work_id", null: false
+    t.string "name", null: false
+    t.integer "position", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["work_id", "position"], name: "index_work_processes_on_work_id_and_position", unique: true
+    t.index ["work_id"], name: "index_work_processes_on_work_id"
   end
 
   create_table "works", force: :cascade do |t|
@@ -32,5 +51,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_24_074555) do
     t.index ["user_id"], name: "index_works_on_user_id"
   end
 
+  add_foreign_key "production_units", "works"
+  add_foreign_key "work_processes", "works"
   add_foreign_key "works", "users"
 end

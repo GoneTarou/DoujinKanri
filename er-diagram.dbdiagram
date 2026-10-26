@@ -1,0 +1,185 @@
+{
+  "version": "2.0.0",
+  "darkMode": true,
+  "gridEnabling": false,
+  "currentViewName": null,
+  "defaultView": {
+    "detailLevel": "All",
+    "relationshipMode": "All",
+    "tablePositions": [
+      {
+        "name": "users",
+        "schemaName": "public",
+        "x": 12,
+        "y": 12
+      },
+      {
+        "name": "works",
+        "schemaName": "public",
+        "x": 443.3515625,
+        "y": 12
+      },
+      {
+        "name": "processes",
+        "schemaName": "public",
+        "x": 939.66552734375,
+        "y": 12
+      },
+      {
+        "name": "production_units",
+        "schemaName": "public",
+        "x": 939.66552734375,
+        "y": 218
+      },
+      {
+        "name": "process_checks",
+        "schemaName": "public",
+        "x": 1430.3916015625,
+        "y": 12
+      },
+      {
+        "name": "weekly_availabilities",
+        "schemaName": "public",
+        "x": 939.66552734375,
+        "y": 424
+      },
+      {
+        "name": "availability_overrides",
+        "schemaName": "public",
+        "x": 939.66552734375,
+        "y": 630
+      },
+      {
+        "name": "daily_targets",
+        "schemaName": "public",
+        "x": 939.66552734375,
+        "y": 836
+      }
+    ],
+    "tableGroupCollapseStates": [],
+    "stickyNoteLayouts": [],
+    "referencePaths": [
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "users",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "user_id"
+        ],
+        "secondTableName": "works",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "works",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "work_id"
+        ],
+        "secondTableName": "processes",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "works",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "work_id"
+        ],
+        "secondTableName": "production_units",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "works",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "work_id"
+        ],
+        "secondTableName": "weekly_availabilities",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "works",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "work_id"
+        ],
+        "secondTableName": "availability_overrides",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "works",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "work_id"
+        ],
+        "secondTableName": "daily_targets",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "production_units",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "production_unit_id"
+        ],
+        "secondTableName": "process_checks",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "processes",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "process_id"
+        ],
+        "secondTableName": "process_checks",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      }
+    ]
+  },
+  "views": {}
+}

@@ -22,6 +22,16 @@
       <dd><%= l @work.deadline %></dd>
     </dl>
 
+    <section class="mt-8">
+      <h2 class="text-xl font-bold">工程</h2>
+
+      <ol class="mt-4 list-decimal space-y-2 pl-5">
+        <% @work.work_processes.each do |work_process| %>
+          <li><%= work_process.name %></li>
+        <% end %>
+      </ol>
+    </section>
+
     <div class="mt-8 flex gap-3">
       <%= link_to "編集",
                   edit_work_path(@work),
