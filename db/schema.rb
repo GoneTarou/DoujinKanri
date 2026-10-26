@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_26_093540) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_26_111816) do
+  create_table "process_checks", force: :cascade do |t|
+    t.integer "production_unit_id", null: false
+    t.integer "work_process_id", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["production_unit_id", "work_process_id"], name: "index_process_checks_on_production_unit_id_and_work_process_id", unique: true
+    t.index ["production_unit_id"], name: "index_process_checks_on_production_unit_id"
+    t.index ["work_process_id"], name: "index_process_checks_on_work_process_id"
+  end
+
   create_table "production_units", force: :cascade do |t|
     t.integer "work_id", null: false
     t.integer "position", null: false
@@ -51,6 +62,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_26_093540) do
     t.index ["user_id"], name: "index_works_on_user_id"
   end
 
+  add_foreign_key "process_checks", "production_units"
+  add_foreign_key "process_checks", "work_processes"
   add_foreign_key "production_units", "works"
   add_foreign_key "work_processes", "works"
   add_foreign_key "works", "users"

@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  production_unit: one
+  work_process: one
+  checked: false
+
+two:
+  production_unit: two
+  work_process: two
+  checked: false
