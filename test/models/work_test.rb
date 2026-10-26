@@ -109,4 +109,26 @@ class WorkTest < ActiveSupport::TestCase
     assert_equal [ "ネーム", "下書き", "ペン入れ", "仕上げ" ],
                 work.work_processes.order(:position).pluck(:name)
   end
+
+  test "小説を作成すると標準工程が順番に作成される" do
+    work = build_work(
+      title: "新しい小説",
+      work_type: "novel"
+    )
+    work.save!
+
+    assert_equal [ "プロット", "本文", "推敲", "最終確認" ],
+                work.work_processes.pluck(:name)
+  end
+
+  test "イラストを作成すると標準工程が順番に作成される" do
+    work = build_work(
+      title: "新しいイラスト",
+      work_type: "illustration"
+    )
+    work.save!
+
+    assert_equal [ "ラフ", "下書き", "線画", "色塗り", "仕上げ" ],
+                work.work_processes.pluck(:name)
+  end
 end
