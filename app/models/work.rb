@@ -10,8 +10,7 @@ class Work < ApplicationRecord
   has_many :production_units, -> { order(:position) }, dependent: :destroy
   has_many :process_checks, through: :production_units
 
-  after_create :create_default_work_processes
-  after_create :create_production_units
+  after_create :create_initial_records
 
   enum :work_type, {
     manga: "manga",

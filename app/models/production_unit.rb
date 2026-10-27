@@ -1,5 +1,6 @@
 class ProductionUnit < ApplicationRecord
   belongs_to :work
+  has_many :process_checks, dependent: :destroy
 
   validates :position,
             numericality: {
