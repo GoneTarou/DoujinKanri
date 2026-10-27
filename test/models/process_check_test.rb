@@ -12,31 +12,28 @@ class ProcessCheckTest < ActiveSupport::TestCase
     )
   end
 
-  def build_process_check(work)
-    ProcessCheck.new(
-      production_unit: work.production_units.first,
-      work_process: work.work_processes.first
-    )
-  end
-
   test "有効な工程チェックを作成できる" do
-    process_check = build_process_check(create_work)
+    work = create_work
+    process_check = work.process_checks.first
 
     assert_predicate process_check, :valid?
   end
 
   test "工程チェックは未完了で作成される" do
-    process_check = build_process_check(create_work)
+    work = create_work
+    process_check = work.process_checks.first
 
     assert_equal false, process_check.checked
   end
 
   test "同じ制作対象と工程の組み合わせは重複できない" do
     work = create_work
-    process_check = build_process_check(work)
-    process_check.save!
+    process_check = work.process_checks.first
 
-    duplicate_check = build_process_check(work)
+    duplicate_check = ProcessCheck.new(
+      production_unit: process_check.production_unit,
+      work_process: process_check.work_process
+    )
 
     assert_not duplicate_check.valid?
     assert duplicate_check.errors[:production_unit_id].present?

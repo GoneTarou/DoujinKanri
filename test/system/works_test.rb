@@ -60,15 +60,16 @@ class WorksTest < ApplicationSystemTestCase
     assert_text "残り：1"
     assert_text "進捗率：0%"
 
-    4.times do
-      find_button("未完了", match: :first).click
+    4.times do |index|
+      find_button("未完了", exact: true, match: :first).click
+      assert_selector "button", text: /\A完了\z/, count: index + 1
     end
 
     assert_text "完成：1 / 1"
     assert_text "残り：0"
     assert_text "進捗率：100%"
 
-    find_button("完了", match: :first).click
+    find_button("完了", exact: true, match: :first).click
 
     assert_text "完成：0 / 1"
     assert_text "残り：1"
