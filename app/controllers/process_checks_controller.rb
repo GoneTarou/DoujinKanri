@@ -1,0 +1,2 @@
+class ProcessChecksController < ApplicationController
+end
