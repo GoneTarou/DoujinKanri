@@ -22,14 +22,60 @@
       <dd><%= l @work.deadline %></dd>
     </dl>
 
-    <section class="mt-8">
-      <h2 class="text-xl font-bold">工程</h2>
+    <% process_checks_by_pair = @work.process_checks.index_by { |process_check| [ process_check.production_unit_id, process_check.work_process_id ] } %>
 
-      <ol class="mt-4 list-decimal space-y-2 pl-5">
-        <% @work.work_processes.each do |work_process| %>
-          <li><%= work_process.name %></li>
-        <% end %>
-      </ol>
+    <section class="mt-8">
+      <h2 class="text-xl font-bold">進捗</h2>
+
+      <div class="mt-4 flex gap-6">
+        <p>完成：<%= @work.completed_quantity %> / <%= @work.total_quantity %></p>
+        <p>残り：<%= @work.remaining_quantity %></p>
+        <p>進捗率：<%= @work.progress_percentage %>%</p>
+      </div>
+    </section>
+
+    <section class="mt-8">
+      <h2 class="text-xl font-bold">工程チェック表</h2>
+
+      <div class="mt-4 overflow-x-auto">
+        <table class="table table-zebra">
+          <thead>
+            <tr>
+              <th>制作対象</th>
+
+              <% @work.work_processes.each do |work_process| %>
+                <th><%= work_process.name %></th>
+              <% end %>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @work.production_units.each do |production_unit| %>
+              <tr>
+                <th><%= production_unit.position %></th>
+
+                <% @work.work_processes.each do |work_process| %>
+                  <% process_check = process_checks_by_pair.fetch(
+                    [ production_unit.id, work_process.id ]
+                  ) %>
+
+                  <td>
+                    <%= button_to(
+                      process_check.checked? ? "完了" : "未完了",
+                      process_check_path(process_check),
+                      method: :patch,
+                      params: {
+                        process_check: { checked: !process_check.checked? }
+                      },
+                      class: process_check.checked? ? "btn btn-success btn-sm" : "btn btn-outline btn-sm"
+                    ) %>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <div class="mt-8 flex gap-3">

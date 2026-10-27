@@ -168,14 +168,13 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
     assert_select "input[name='work[title]'][value='新しい漫画']"
   end
 
-  test "作品詳細に標準工程を表示する" do
+  test "作品詳細に工程チェック表と進捗を表示する" do
     user = sign_in_as_guest
-
     work = Work.create!(
       user: user,
       title: "冬コミ新刊",
       work_type: "manga",
-      total_quantity: 10,
+      total_quantity: 2,
       start_date: Date.new(2026, 10, 24),
       deadline: Date.new(2026, 12, 10)
     )
@@ -183,10 +182,53 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
     get work_path(work)
 
     assert_response :success
-    assert_select "h2", "工程"
-    assert_select "ol li", "ネーム"
-    assert_select "ol li", "下書き"
-    assert_select "ol li", "ペン入れ"
-    assert_select "ol li", "仕上げ"
+    assert_select "p", "完成：0 / 2"
+    assert_select "p", "残り：2"
+    assert_select "p", "進捗率：0%"
+
+    assert_select "h2", "工程チェック表"
+    assert_select "thead th", "ネーム"
+    assert_select "thead th", "下書き"
+    assert_select "thead th", "ペン入れ"
+    assert_select "thead th", "仕上げ"
+    assert_select "tbody tr", count: 2
+    assert_select "button", { text: "未完了", count: 8 }
+  end
+
+  test "総量を減らす更新では確認画面を表示し制作対象を削除しない" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user, total_quantity: 2))
+
+    patch work_path(work), params: {
+      work: { total_quantity: 1 }
+    }
+
+    assert_response :success
+    assert_select "h1", "総量を減らす確認"
+    assert_select "p", "削除される制作対象：1件"
+    assert_select "p", "削除される工程チェック：4件"
+    assert_select "a[href='#{edit_work_path(work)}']", "キャンセル"
+
+    work.reload
+    assert_equal 2, work.total_quantity
+    assert_equal 2, work.production_units.count
+    assert_equal 8, work.process_checks.count
+  end
+
+  test "確認後に総量を減らすと末尾の制作対象と工程チェックを削除する" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user, total_quantity: 2))
+
+    patch work_path(work), params: {
+      work: { total_quantity: 1 },
+      confirm_quantity_reduction: "true"
+    }
+
+    assert_redirected_to work_path(work)
+
+    work.reload
+    assert_equal 1, work.total_quantity
+    assert_equal [ 1 ], work.production_units.pluck(:position)
+    assert_equal 4, work.process_checks.count
   end
 end

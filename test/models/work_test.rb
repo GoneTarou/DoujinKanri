@@ -139,4 +139,63 @@ class WorkTest < ActiveSupport::TestCase
     assert_equal [ 1, 2, 3 ],
                 work.production_units.order(:position).pluck(:position)
   end
+
+  test "作品を作成すると制作対象と工程の全組み合わせで工程チェックが作成される" do
+    work = build_work(total_quantity: 3)
+    work.save!
+
+    assert_equal 12, work.process_checks.count
+    assert_equal [ false ], work.process_checks.distinct.pluck(:checked)
+  end
+
+  test "制作対象の全工程を完了すると完成数と進捗率が更新される" do
+    work = build_work(total_quantity: 2)
+    work.save!
+
+    first_unit = work.production_units.first
+    first_unit.process_checks.update_all(checked: true)
+
+    assert_equal 1, work.completed_quantity
+    assert_equal 1, work.remaining_quantity
+    assert_equal 50, work.progress_percentage
+  end
+
+  test "総量を増やすと制作対象と工程チェックが追加される" do
+    work = build_work(total_quantity: 2)
+    work.save!
+
+    assert_difference -> { work.production_units.count }, 1 do
+      assert_difference -> { work.process_checks.count }, 4 do
+        work.update!(total_quantity: 3)
+      end
+    end
+
+    assert_equal [ 1, 2, 3 ],
+                work.production_units.pluck(:position)
+  end
+
+  test "総量を減らすと末尾の制作対象と工程チェックが削除される" do
+    work = build_work(total_quantity: 2)
+    work.save!
+
+    assert_difference -> { work.production_units.count }, -1 do
+      assert_difference -> { work.process_checks.count }, -4 do
+        work.update!(total_quantity: 1)
+      end
+    end
+
+    assert_equal [ 1 ],
+                work.reload.production_units.pluck(:position)
+  end
+
+  test "総量以外を更新しても制作対象と工程チェックは変わらない" do
+    work = build_work(total_quantity: 2)
+    work.save!
+
+    assert_no_difference -> { work.production_units.count } do
+      assert_no_difference -> { work.process_checks.count } do
+        work.update!(title: "冬コミ新刊 改訂版")
+      end
+    end
+  end
 end

@@ -1,5 +1,10 @@
 class ProductionUnit < ApplicationRecord
   belongs_to :work
+  has_many :process_checks, dependent: :destroy
+
+  def completed?
+    process_checks.any? && process_checks.all?(&:checked?)
+  end
 
   validates :position,
             numericality: {

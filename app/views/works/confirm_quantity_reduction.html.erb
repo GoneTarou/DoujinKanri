@@ -1,0 +1,41 @@
+<% content_for :title, "総量を減らす確認 | しめきりノート" %>
+
+<section class="mx-auto w-full max-w-2xl">
+  <h1 class="text-3xl font-bold">総量を減らす確認</h1>
+
+  <div class="mt-6 rounded-box border border-warning bg-warning/10 p-6">
+    <p>
+      総量を<%= @work.total_quantity %>から
+      <%= @new_total_quantity %>へ変更します。
+    </p>
+
+    <p class="mt-4">
+      削除される制作対象：<%= @removed_production_units.count %>件
+    </p>
+
+    <p>
+      削除される工程チェック：<%= @removed_process_check_count %>件
+    </p>
+
+    <p class="mt-4 text-sm text-base-content/70">
+      末尾の制作対象と、その進捗記録は削除されます。
+    </p>
+  </div>
+
+  <div class="mt-8 flex gap-3">
+    <%= link_to "キャンセル",
+                edit_work_path(@work),
+                class: "btn btn-outline" %>
+
+    <%= form_with url: work_path(@work), method: :patch do %>
+      <% @pending_work_attributes.each do |attribute, value| %>
+        <%= hidden_field_tag "work[#{attribute}]", value %>
+      <% end %>
+
+      <%= hidden_field_tag :confirm_quantity_reduction, "true" %>
+
+      <%= submit_tag "削除して総量を変更",
+                     class: "btn btn-error" %>
+    <% end %>
+  </div>
+</section>
