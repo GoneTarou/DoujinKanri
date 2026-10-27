@@ -168,14 +168,13 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
     assert_select "input[name='work[title]'][value='新しい漫画']"
   end
 
-  test "作品詳細に標準工程を表示する" do
+  test "作品詳細に工程チェック表と進捗を表示する" do
     user = sign_in_as_guest
-
     work = Work.create!(
       user: user,
       title: "冬コミ新刊",
       work_type: "manga",
-      total_quantity: 10,
+      total_quantity: 2,
       start_date: Date.new(2026, 10, 24),
       deadline: Date.new(2026, 12, 10)
     )
@@ -183,10 +182,16 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
     get work_path(work)
 
     assert_response :success
-    assert_select "h2", "工程"
-    assert_select "ol li", "ネーム"
-    assert_select "ol li", "下書き"
-    assert_select "ol li", "ペン入れ"
-    assert_select "ol li", "仕上げ"
+    assert_select "p", "完成：0 / 2"
+    assert_select "p", "残り：2"
+    assert_select "p", "進捗率：0%"
+
+    assert_select "h2", "工程チェック表"
+    assert_select "thead th", "ネーム"
+    assert_select "thead th", "下書き"
+    assert_select "thead th", "ペン入れ"
+    assert_select "thead th", "仕上げ"
+    assert_select "tbody tr", count: 2
+    assert_select "button", { text: "未完了", count: 8 }
   end
 end

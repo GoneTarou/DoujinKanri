@@ -44,6 +44,37 @@ class WorksTest < ApplicationSystemTestCase
     assert_text "まだ作品がありません。"
   end
 
+  test "ゲストユーザーは工程チェックを完了と未完了に切り替えられる" do
+    visit root_path
+    click_button "ゲストとして始める"
+    assert_text "ゲストとして利用中です"
+
+    visit new_work_path
+    fill_in "作品名", with: "工程チェック用の作品"
+    fill_in "総量", with: 1
+    set_date_field("制作開始日", "2026-10-24")
+    set_date_field("締切", "2026-12-10")
+    click_button "作品を作成する"
+
+    assert_text "完成：0 / 1"
+    assert_text "残り：1"
+    assert_text "進捗率：0%"
+
+    4.times do
+      find_button("未完了", match: :first).click
+    end
+
+    assert_text "完成：1 / 1"
+    assert_text "残り：0"
+    assert_text "進捗率：100%"
+
+    find_button("完了", match: :first).click
+
+    assert_text "完成：0 / 1"
+    assert_text "残り：1"
+    assert_text "進捗率：0%"
+  end
+
   private
 
   def set_date_field(label, value)
