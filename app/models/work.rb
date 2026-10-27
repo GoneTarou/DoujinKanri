@@ -8,6 +8,7 @@ class Work < ApplicationRecord
   belongs_to :user
   has_many :work_processes, -> { order(:position) }, dependent: :destroy
   has_many :production_units, -> { order(:position) }, dependent: :destroy
+  has_many :process_checks, through: :production_units
 
   after_create :create_default_work_processes
   after_create :create_production_units
@@ -50,6 +51,23 @@ class Work < ApplicationRecord
   def create_production_units
     total_quantity.times do |index|
       production_units.create!(position: index + 1)
+    end
+  end
+
+  def create_initial_records
+    create_default_work_processes
+    create_production_units
+    create_process_checks
+  end
+
+  def create_process_checks
+    production_units.each do |production_unit|
+      work_processes.each do |work_process|
+        ProcessCheck.create!(
+          production_unit: production_unit,
+          work_process: work_process
+        )
+      end
     end
   end
 end

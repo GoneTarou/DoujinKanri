@@ -139,4 +139,12 @@ class WorkTest < ActiveSupport::TestCase
     assert_equal [ 1, 2, 3 ],
                 work.production_units.order(:position).pluck(:position)
   end
+
+  test "作品を作成すると制作対象と工程の全組み合わせで工程チェックが作成される" do
+    work = build_work(total_quantity: 3)
+    work.save!
+
+    assert_equal 12, work.process_checks.count
+    assert_equal [ false ], work.process_checks.distinct.pluck(:checked)
+  end
 end
