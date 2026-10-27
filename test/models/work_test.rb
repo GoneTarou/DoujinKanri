@@ -147,4 +147,16 @@ class WorkTest < ActiveSupport::TestCase
     assert_equal 12, work.process_checks.count
     assert_equal [ false ], work.process_checks.distinct.pluck(:checked)
   end
+
+  test "制作対象の全工程を完了すると完成数と進捗率が更新される" do
+    work = build_work(total_quantity: 2)
+    work.save!
+
+    first_unit = work.production_units.first
+    first_unit.process_checks.update_all(checked: true)
+
+    assert_equal 1, work.completed_quantity
+    assert_equal 1, work.remaining_quantity
+    assert_equal 50, work.progress_percentage
+  end
 end

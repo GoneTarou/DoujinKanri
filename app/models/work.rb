@@ -29,6 +29,20 @@ class Work < ApplicationRecord
 
   validate :deadline_on_or_after_start_date
 
+  def completed_quantity
+    production_units.includes(:process_checks).count(&:completed?)
+  end
+
+  def remaining_quantity
+    total_quantity - completed_quantity
+  end
+
+  def progress_percentage
+    return 0 if total_quantity.zero?
+
+    (completed_quantity * 100.0 / total_quantity).round
+  end
+
   private
 
   def deadline_on_or_after_start_date
