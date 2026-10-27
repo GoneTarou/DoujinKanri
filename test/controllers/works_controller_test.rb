@@ -194,4 +194,41 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
     assert_select "tbody tr", count: 2
     assert_select "button", { text: "未完了", count: 8 }
   end
+
+  test "総量を減らす更新では確認画面を表示し制作対象を削除しない" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user, total_quantity: 2))
+
+    patch work_path(work), params: {
+      work: { total_quantity: 1 }
+    }
+
+    assert_response :success
+    assert_select "h1", "総量を減らす確認"
+    assert_select "p", "削除される制作対象：1件"
+    assert_select "p", "削除される工程チェック：4件"
+    assert_select "a[href='#{edit_work_path(work)}']", "キャンセル"
+
+    work.reload
+    assert_equal 2, work.total_quantity
+    assert_equal 2, work.production_units.count
+    assert_equal 8, work.process_checks.count
+  end
+
+  test "確認後に総量を減らすと末尾の制作対象と工程チェックを削除する" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user, total_quantity: 2))
+
+    patch work_path(work), params: {
+      work: { total_quantity: 1 },
+      confirm_quantity_reduction: "true"
+    }
+
+    assert_redirected_to work_path(work)
+
+    work.reload
+    assert_equal 1, work.total_quantity
+    assert_equal [ 1 ], work.production_units.pluck(:position)
+    assert_equal 4, work.process_checks.count
+  end
 end

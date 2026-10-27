@@ -159,4 +159,43 @@ class WorkTest < ActiveSupport::TestCase
     assert_equal 1, work.remaining_quantity
     assert_equal 50, work.progress_percentage
   end
+
+  test "総量を増やすと制作対象と工程チェックが追加される" do
+    work = build_work(total_quantity: 2)
+    work.save!
+
+    assert_difference -> { work.production_units.count }, 1 do
+      assert_difference -> { work.process_checks.count }, 4 do
+        work.update!(total_quantity: 3)
+      end
+    end
+
+    assert_equal [ 1, 2, 3 ],
+                work.production_units.pluck(:position)
+  end
+
+  test "総量を減らすと末尾の制作対象と工程チェックが削除される" do
+    work = build_work(total_quantity: 2)
+    work.save!
+
+    assert_difference -> { work.production_units.count }, -1 do
+      assert_difference -> { work.process_checks.count }, -4 do
+        work.update!(total_quantity: 1)
+      end
+    end
+
+    assert_equal [ 1 ],
+                work.production_units.pluck(:position)
+  end
+
+  test "総量以外を更新しても制作対象と工程チェックは変わらない" do
+    work = build_work(total_quantity: 2)
+    work.save!
+
+    assert_no_difference -> { work.production_units.count } do
+      assert_no_difference -> { work.process_checks.count } do
+        work.update!(title: "冬コミ新刊 改訂版")
+      end
+    end
+  end
 end
