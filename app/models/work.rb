@@ -12,6 +12,8 @@ class Work < ApplicationRecord
 
   after_create :create_initial_records
 
+  after_update :sync_production_units, if: :saved_change_to_total_quantity?
+
   enum :work_type, {
     manga: "manga",
     novel: "novel",
@@ -75,12 +77,29 @@ class Work < ApplicationRecord
 
   def create_process_checks
     production_units.each do |production_unit|
-      work_processes.each do |work_process|
-        ProcessCheck.create!(
-          production_unit: production_unit,
-          work_process: work_process
-        )
+      create_process_checks_for(production_unit)
+    end
+  end
+
+  def create_process_checks_for(production_unit)
+    work_processes.each do |work_process|
+      ProcessCheck.create!(
+        production_unit: production_unit,
+        work_process: work_process
+      )
+    end
+  end
+
+  def sync_production_units
+    previous_quantity, current_quantity = saved_change_to_total_quantity
+
+    if current_quantity > previous_quantity
+      (previous_quantity + 1).upto(current_quantity) do |position|
+        production_unit = production_units.create!(position: position)
+        create_process_checks_for(production_unit)
       end
+    else
+      production_units.where("position > ?", current_quantity).destroy_all
     end
   end
 end

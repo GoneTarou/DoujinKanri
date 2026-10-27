@@ -185,7 +185,7 @@ class WorkTest < ActiveSupport::TestCase
     end
 
     assert_equal [ 1 ],
-                work.production_units.pluck(:position)
+                work.reload.production_units.pluck(:position)
   end
 
   test "総量以外を更新しても制作対象と工程チェックは変わらない" do

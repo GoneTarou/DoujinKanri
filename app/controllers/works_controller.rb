@@ -29,7 +29,10 @@ class WorksController < ApplicationController
   end
 
   def update
-    if @work.update(work_params)
+    if quantity_reduction_requires_confirmation?
+      prepare_quantity_reduction_confirmation
+      render :confirm_quantity_reduction
+    elsif @work.update(work_params)
       redirect_to @work, notice: "作品を更新しました。"
     else
       render :edit, status: :unprocessable_entity
@@ -52,6 +55,27 @@ class WorksController < ApplicationController
 
   def set_work
     @work = current_user.works.find(params[:id])
+  end
+
+  def quantity_reduction_requires_confirmation?
+    return false if params[:confirm_quantity_reduction] == "true"
+
+    new_total_quantity = work_params[:total_quantity].to_i
+
+    new_total_quantity.positive? &&
+      new_total_quantity < @work.total_quantity
+  end
+
+  def prepare_quantity_reduction_confirmation
+    @pending_work_attributes = work_params.to_h
+    @new_total_quantity = @pending_work_attributes.fetch("total_quantity").to_i
+    @removed_production_units = @work.production_units.where(
+      "position > ?",
+      @new_total_quantity
+    )
+    @removed_process_check_count = ProcessCheck.where(
+      production_unit: @removed_production_units
+    ).count
   end
 
   def work_params
