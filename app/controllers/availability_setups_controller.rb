@@ -1,0 +1,2 @@
+class AvailabilitySetupsController < ApplicationController
+end
