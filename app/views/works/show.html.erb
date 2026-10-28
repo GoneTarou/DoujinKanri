@@ -67,7 +67,15 @@
               <th>制作対象</th>
 
               <% @work.work_processes.each do |work_process| %>
-                <th><%= work_process.name %></th>
+                <th>
+                  <div class="flex items-center gap-2">
+                    <span><%= work_process.name %></span>
+                    <%= button_to "#{work_process.name}を削除",
+                                  work_work_process_path(@work, work_process),
+                                  method: :delete,
+                                  class: "btn btn-ghost btn-xs" %>
+                  </div>
+                </th>
               <% end %>
             </tr>
           </thead>

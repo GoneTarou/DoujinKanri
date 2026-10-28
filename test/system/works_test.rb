@@ -76,6 +76,25 @@ class WorksTest < ApplicationSystemTestCase
     assert_text "進捗率：0%"
   end
 
+  test "ゲストユーザーは作品詳細から工程を削除できる" do
+    visit root_path
+    click_button "ゲストとして始める"
+    assert_text "ゲストとして利用中です"
+
+    visit new_work_path
+    fill_in "作品名", with: "工程削除用の作品"
+    fill_in "総量", with: 2
+    set_date_field("制作開始日", "2026-10-24")
+    set_date_field("締切", "2026-12-10")
+    click_button "作品を作成する"
+
+    click_button "仕上げを削除"
+
+    assert_text "工程を削除しました。"
+    assert_no_selector "thead th", text: "仕上げ"
+    assert_selector "button", text: /\A未完了\z/, count: 6
+  end
+
   private
 
   def set_date_field(label, value)
