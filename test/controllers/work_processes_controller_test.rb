@@ -51,4 +51,20 @@ class WorkProcessesControllerTest < ActionDispatch::IntegrationTest
     assert_equal 3, work.work_processes.reload.count
     assert_equal 6, work.process_checks.count
   end
+
+  test "最後の工程は削除できない" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+
+    work.work_processes.order(:position).limit(3).each(&:destroy!)
+    last_process = work.work_processes.reload.sole
+
+    assert_no_difference -> { WorkProcess.count } do
+      delete work_work_process_path(work, last_process)
+    end
+
+    assert_redirected_to work_path(work)
+    assert_equal 1, work.work_processes.reload.count
+    assert_equal "工程は1つ以上必要です", flash[:alert]
+  end
 end

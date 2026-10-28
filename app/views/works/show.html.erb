@@ -35,6 +35,29 @@
     </section>
 
     <section class="mt-8">
+      <h2 class="text-xl font-bold">工程を追加</h2>
+
+      <%= form_with model: [ @work, WorkProcess.new ], class: "mt-4 flex items-end gap-3" do |form| %>
+        <div class="form-control">
+          <%= form.label :name, "工程名", class: "label" %>
+          <%= form.text_field :name, class: "input input-bordered", required: true %>
+        </div>
+
+        <div class="form-control">
+          <%= form.label :position, "工程の順番", class: "label" %>
+          <%= form.number_field :position,
+                                value: @work.work_processes.maximum(:position).to_i + 1,
+                                min: 1,
+                                max: 10,
+                                class: "input input-bordered w-28",
+                                required: true %>
+        </div>
+
+        <%= form.submit "工程を追加する", class: "btn btn-primary" %>
+      <% end %>
+    </section>
+
+    <section class="mt-8">
       <h2 class="text-xl font-bold">工程チェック表</h2>
 
       <div class="mt-4 overflow-x-auto">
