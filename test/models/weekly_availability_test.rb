@@ -41,4 +41,17 @@ class WeeklyAvailabilityTest < ActiveSupport::TestCase
 
     assert_not weekly_availability.valid?
   end
+
+  test "同じ作品に同じ曜日の予定は作成できない" do
+    work = create_work
+    WeeklyAvailability.create!(work: work, weekday: 0, hours: 4)
+
+    duplicate = WeeklyAvailability.new(
+      work: work,
+      weekday: 0,
+      hours: 6
+    )
+
+    assert_not duplicate.valid?
+  end
 end

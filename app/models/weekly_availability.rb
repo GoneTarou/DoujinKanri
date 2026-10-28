@@ -14,4 +14,6 @@ class WeeklyAvailability < ApplicationRecord
               greater_than_or_equal_to: 0,
               less_than_or_equal_to: 6
             }
+
+  validates :weekday, uniqueness: { scope: :work_id }
 end
