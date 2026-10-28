@@ -54,4 +54,49 @@ class WeeklyAvailabilityTest < ActiveSupport::TestCase
 
     assert_not duplicate.valid?
   end
+
+  test "週合計を月曜日から順に均等配分できる" do
+    assert_equal(
+      {
+        0 => 2,
+        1 => 2,
+        2 => 2,
+        3 => 2,
+        4 => 2,
+        5 => 1,
+        6 => 1
+      },
+      WeeklyAvailability.distribute_hours(12)
+    )
+  end
+
+  test "週合計が0時間なら全曜日を0時間に配分する" do
+    assert_equal(
+      {
+        0 => 0,
+        1 => 0,
+        2 => 0,
+        3 => 0,
+        4 => 0,
+        5 => 0,
+        6 => 0
+      },
+      WeeklyAvailability.distribute_hours(0)
+    )
+  end
+
+test "週合計が168時間なら全曜日を24時間に配分する" do
+    assert_equal(
+      {
+        0 => 24,
+        1 => 24,
+        2 => 24,
+        3 => 24,
+        4 => 24,
+        5 => 24,
+        6 => 24
+      },
+      WeeklyAvailability.distribute_hours(168)
+    )
+  end
 end
