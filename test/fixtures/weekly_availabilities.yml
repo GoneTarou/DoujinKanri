@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  work: one
+  weekday: 1
+  hours: 1
+
+two:
+  work: two
+  weekday: 1
+  hours: 1
