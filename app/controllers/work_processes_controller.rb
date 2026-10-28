@@ -12,6 +12,16 @@ class WorkProcessesController < ApplicationController
     end
   end
 
+  def destroy
+    @work_process = @work.work_processes.find(params[:id])
+
+    if @work_process.destroy
+      redirect_to @work, notice: "工程を削除しました。"
+    else
+      redirect_to @work, alert: @work_process.errors.full_messages.to_sentence
+    end
+  end
+
   private
 
   def set_work

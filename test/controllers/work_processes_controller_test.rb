@@ -37,4 +37,18 @@ class WorkProcessesControllerTest < ActionDispatch::IntegrationTest
     assert_equal work.production_units.count, added_process.process_checks.count
     assert_redirected_to work_path(work)
   end
+
+  test "ログイン済みのゲストは自分の作品の工程を削除できる" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+    work_process = work.work_processes.find_by!(position: 4)
+
+    assert_difference -> { WorkProcess.count }, -1 do
+      delete work_work_process_path(work, work_process)
+    end
+
+    assert_redirected_to work_path(work)
+    assert_equal 3, work.work_processes.reload.count
+    assert_equal 6, work.process_checks.count
+  end
 end
