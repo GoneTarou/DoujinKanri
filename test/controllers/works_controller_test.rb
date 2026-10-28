@@ -104,6 +104,8 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", "作品を編集"
     assert_select "input[name='work[title]'][value='冬コミ新刊']"
+    assert_select "select[name='work[work_type]']", false
+    assert_select "p", "漫画"
   end
 
   test "ログイン済みのゲストは自分の作品を更新できる" do
@@ -187,10 +189,10 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
     assert_select "p", "進捗率：0%"
 
     assert_select "h2", "工程チェック表"
-    assert_select "thead th", "ネーム"
-    assert_select "thead th", "下書き"
-    assert_select "thead th", "ペン入れ"
-    assert_select "thead th", "仕上げ"
+    assert_select "thead th", text: /ネーム/
+    assert_select "thead th", text: /下書き/
+    assert_select "thead th", text: /ペン入れ/
+    assert_select "thead th", text: /仕上げ/
     assert_select "tbody tr", count: 2
     assert_select "button", { text: "未完了", count: 8 }
   end
@@ -230,5 +232,17 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
     assert_equal 1, work.total_quantity
     assert_equal [ 1 ], work.production_units.pluck(:position)
     assert_equal 4, work.process_checks.count
+  end
+
+  test "作品更新では作品種別を変更できない" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+
+    patch work_path(work), params: {
+      work: { work_type: "novel" }
+    }
+
+    assert_redirected_to work_path(work)
+    assert_equal "manga", work.reload.work_type
   end
 end

@@ -13,7 +13,7 @@ class WorksController < ApplicationController
   end
 
   def create
-    @work = current_user.works.build(work_params)
+    @work = current_user.works.build(create_work_params)
 
     if @work.save
       redirect_to @work, notice: "作品を作成しました。"
@@ -78,10 +78,19 @@ class WorksController < ApplicationController
     ).count
   end
 
-  def work_params
+  def create_work_params
     params.require(:work).permit(
       :title,
       :work_type,
+      :total_quantity,
+      :start_date,
+      :deadline
+    )
+  end
+
+  def work_params
+    params.require(:work).permit(
+      :title,
       :total_quantity,
       :start_date,
       :deadline

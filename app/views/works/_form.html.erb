@@ -12,6 +12,8 @@
   </div>
 <% end %>
 
+<% work_type_options = [["漫画", "manga"], ["小説", "novel"], ["イラスト", "illustration"]] %>
+
 <%= form_with model: @work, class: "mt-8 space-y-6" do |form| %>
   <div>
     <%= form.label :title, "作品名", class: "label" %>
@@ -19,11 +21,18 @@
   </div>
 
   <div>
-    <%= form.label :work_type, "作品種別", class: "label" %>
-    <%= form.select :work_type,
-                    [["漫画", "manga"], ["小説", "novel"], ["イラスト", "illustration"]],
-                    {},
-                    class: "select select-bordered w-full" %>
+    <% if @work.persisted? %>
+      <p class="label">作品種別</p>
+      <p class="rounded-field border border-base-300 px-3 py-2">
+        <%= work_type_options.to_h.invert.fetch(@work.work_type) %>
+      </p>
+    <% else %>
+      <%= form.label :work_type, "作品種別", class: "label" %>
+      <%= form.select :work_type,
+                      work_type_options,
+                      {},
+                      class: "select select-bordered w-full" %>
+    <% end %>
   </div>
 
   <div>

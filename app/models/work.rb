@@ -10,6 +10,7 @@ class Work < ApplicationRecord
   has_many :production_units, -> { order(:position) }, dependent: :destroy
   has_many :process_checks, through: :production_units
 
+  before_destroy :mark_as_destroying, prepend: true
   after_create :create_initial_records
 
   after_update :sync_production_units, if: :saved_change_to_total_quantity?
@@ -45,7 +46,15 @@ class Work < ApplicationRecord
     (completed_quantity * 100.0 / total_quantity).round
   end
 
+  def destroying?
+    @destroying
+  end
+
   private
+
+  def mark_as_destroying
+    @destroying = true
+  end
 
   def deadline_on_or_after_start_date
     return if start_date.blank? || deadline.blank?
