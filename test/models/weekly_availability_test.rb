@@ -31,4 +31,14 @@ class WeeklyAvailabilityTest < ActiveSupport::TestCase
 
     assert_not weekly_availability.valid?
   end
+
+  test "曜日が7の予定は無効である" do
+    weekly_availability = WeeklyAvailability.new(
+      work: create_work,
+      weekday: 7,
+      hours: 4
+    )
+
+    assert_not weekly_availability.valid?
+  end
 end
