@@ -41,4 +41,15 @@ class AvailabilitySetupsControllerTest < ActionDispatch::IntegrationTest
       work.weekly_availabilities.order(:weekday).pluck(:weekday, :hours)
     )
   end
+
+  test "ログイン済みのゲストは作業可能時間の初回設定画面を開ける" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+
+    get new_work_availability_setup_path(work)
+
+    assert_response :success
+    assert_select "h1", "作業可能時間を設定"
+    assert_select "input[name='availability_setup[weekly_total]']"
+  end
 end
