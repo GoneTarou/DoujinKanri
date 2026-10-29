@@ -66,4 +66,40 @@ class AvailabilitySetupsControllerTest < ActionDispatch::IntegrationTest
     assert_response :unprocessable_entity
     assert_select "[role='alert']", "週合計は0〜168時間で入力してください。"
   end
+
+  test "初回設定済みの作品は曜日別予定一覧へ移動する" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+
+    WeeklyAvailability.distribute_hours(12).each do |weekday, hours|
+      work.weekly_availabilities.create!(
+        weekday: weekday,
+        hours: hours
+      )
+    end
+
+    get new_work_availability_setup_path(work)
+
+    assert_redirected_to work_weekly_availabilities_path(work)
+  end
+
+  test "初回設定済みの作品には曜日別予定を重複作成できない" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+
+    WeeklyAvailability.distribute_hours(12).each do |weekday, hours|
+      work.weekly_availabilities.create!(
+        weekday: weekday,
+        hours: hours
+      )
+    end
+
+    assert_no_difference -> { work.weekly_availabilities.count } do
+      post work_availability_setup_path(work), params: {
+        availability_setup: { weekly_total: 20 }
+      }
+    end
+
+    assert_redirected_to work_weekly_availabilities_path(work)
+  end
 end

@@ -3,9 +3,17 @@ class AvailabilitySetupsController < ApplicationController
   before_action :set_work
 
   def new
+    return unless @work.weekly_availabilities.count == 7
+
+    redirect_to work_weekly_availabilities_path(@work)
   end
 
   def create
+    if @work.weekly_availabilities.count == 7
+      redirect_to work_weekly_availabilities_path(@work)
+      return
+    end
+
     unless weekly_total_valid?
       @error_message = "週合計は0〜168時間で入力してください。"
       render :new, status: :unprocessable_entity
