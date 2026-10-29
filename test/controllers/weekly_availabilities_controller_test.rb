@@ -34,4 +34,35 @@ class WeeklyAvailabilitiesControllerTest < ActionDispatch::IntegrationTest
     assert_select "td", "日曜日"
     assert_select "a", { text: "編集", count: 7 }
   end
+
+  test "ログイン済みのゲストは曜日別の作業可能時間を更新できる" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+    weekly_availability = work.weekly_availabilities.create!(
+      weekday: 5,
+      hours: 1
+    )
+
+    patch work_weekly_availability_path(work, weekly_availability), params: {
+      weekly_availability: { hours: 4 }
+    }
+
+    assert_redirected_to work_weekly_availabilities_path(work)
+    assert_equal 4, weekly_availability.reload.hours
+  end
+
+  test "ログイン済みのゲストは曜日別予定の編集画面を開ける" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+    weekly_availability = work.weekly_availabilities.create!(
+      weekday: 5,
+      hours: 1
+    )
+
+    get edit_work_weekly_availability_path(work, weekly_availability)
+
+    assert_response :success
+    assert_select "h1", "土曜日の作業可能時間"
+    assert_select "input[name='weekly_availability[hours]'][value='1']"
+  end
 end
