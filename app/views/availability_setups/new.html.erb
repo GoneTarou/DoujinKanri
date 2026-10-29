@@ -11,12 +11,19 @@
     週に作業できる時間を入力すると、月曜日から日曜日へ均等に配分します。
   </p>
 
+  <% if @error_message %>
+    <div role="alert" class="alert alert-error mt-6">
+      <span><%= @error_message %></span>
+    </div>
+  <% end %>
+
   <%= form_with url: work_availability_setup_path(@work),
                 scope: :availability_setup,
                 class: "mt-8 space-y-6" do |form| %>
     <div>
       <%= form.label :weekly_total, "週合計", class: "label" %>
       <%= form.number_field :weekly_total,
+                            value: @weekly_total,
                             min: 0,
                             max: 168,
                             required: true,

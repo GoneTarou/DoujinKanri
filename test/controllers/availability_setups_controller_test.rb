@@ -52,4 +52,18 @@ class AvailabilitySetupsControllerTest < ActionDispatch::IntegrationTest
     assert_select "h1", "作業可能時間を設定"
     assert_select "input[name='availability_setup[weekly_total]']"
   end
+
+  test "週合計が168時間を超える場合は予定を作成できない" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+
+    assert_no_difference -> { work.weekly_availabilities.count } do
+      post work_availability_setup_path(work), params: {
+        availability_setup: { weekly_total: 169 }
+      }
+    end
+
+    assert_response :unprocessable_entity
+    assert_select "[role='alert']", "週合計は0〜168時間で入力してください。"
+  end
 end

@@ -6,6 +6,12 @@ class AvailabilitySetupsController < ApplicationController
   end
 
   def create
+    unless weekly_total_valid?
+      @error_message = "週合計は0〜168時間で入力してください。"
+      render :new, status: :unprocessable_entity
+      return
+    end
+
     WeeklyAvailability.transaction do
       WeeklyAvailability.distribute_hours(weekly_total).each do |weekday, hours|
         @work.weekly_availabilities.create!(
@@ -31,6 +37,13 @@ class AvailabilitySetupsController < ApplicationController
   end
 
   def weekly_total
-    params.require(:availability_setup).fetch(:weekly_total).to_i
+    @weekly_total ||= Integer(
+      params.require(:availability_setup).fetch(:weekly_total),
+      exception: false
+    )
+  end
+
+  def weekly_total_valid?
+    weekly_total&.between?(0, 168)
   end
 end
