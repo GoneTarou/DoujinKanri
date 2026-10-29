@@ -198,4 +198,17 @@ class WorkTest < ActiveSupport::TestCase
       end
     end
   end
+
+  test "作品は曜日別作業可能時間を持つ" do
+    work = build_work
+    work.save!
+
+    weekly_availability = WeeklyAvailability.create!(
+      work: work,
+      weekday: 0,
+      hours: 4
+    )
+
+    assert_equal [ weekly_availability ], work.weekly_availabilities.to_a
+  end
 end

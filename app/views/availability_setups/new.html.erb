@@ -1,0 +1,37 @@
+<% content_for :title, "作業可能時間を設定 | しめきりノート" %>
+
+<section class="mx-auto w-full max-w-2xl">
+  <%= link_to "作品詳細へ戻る",
+              work_path(@work),
+              class: "link link-hover text-sm" %>
+
+  <h1 class="mt-6 text-3xl font-bold">作業可能時間を設定</h1>
+
+  <p class="mt-3 text-base-content/70">
+    週に作業できる時間を入力すると、月曜日から日曜日へ均等に配分します。
+  </p>
+
+  <% if @error_message %>
+    <div role="alert" class="alert alert-error mt-6">
+      <span><%= @error_message %></span>
+    </div>
+  <% end %>
+
+  <%= form_with url: work_availability_setup_path(@work),
+                scope: :availability_setup,
+                class: "mt-8 space-y-6" do |form| %>
+    <div>
+      <%= form.label :weekly_total, "週合計", class: "label" %>
+      <%= form.number_field :weekly_total,
+                            value: @weekly_total,
+                            min: 0,
+                            max: 168,
+                            required: true,
+                            class: "input input-bordered w-full" %>
+      <p class="mt-2 text-sm text-base-content/70">0〜168時間で入力してください。</p>
+    </div>
+
+    <%= form.submit "曜日別の予定を作成する",
+                    class: "btn btn-primary w-full" %>
+  <% end %>
+</section>

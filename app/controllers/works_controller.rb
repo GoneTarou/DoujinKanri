@@ -16,7 +16,8 @@ class WorksController < ApplicationController
     @work = current_user.works.build(create_work_params)
 
     if @work.save
-      redirect_to @work, notice: "作品を作成しました。"
+      redirect_to new_work_availability_setup_path(@work),
+                  notice: "作品を作成しました。"
     else
       render :new, status: :unprocessable_entity
     end

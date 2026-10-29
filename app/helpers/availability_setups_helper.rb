@@ -1,0 +1,2 @@
+module AvailabilitySetupsHelper
+end

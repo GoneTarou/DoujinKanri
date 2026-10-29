@@ -44,7 +44,7 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
     work = Work.order(:id).last
 
     assert_equal user, work.user
-    assert_redirected_to work_path(work)
+    assert_redirected_to new_work_availability_setup_path(work)
   end
 
   test "ログイン済みのゲストは自分の作品詳細を開ける" do

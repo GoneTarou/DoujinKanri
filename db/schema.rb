@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_26_111816) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_28_100745) do
   create_table "process_checks", force: :cascade do |t|
     t.integer "production_unit_id", null: false
     t.integer "work_process_id", null: false
@@ -40,6 +40,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_26_111816) do
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
 
+  create_table "weekly_availabilities", force: :cascade do |t|
+    t.integer "work_id", null: false
+    t.integer "weekday", null: false
+    t.integer "hours", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["work_id", "weekday"], name: "index_weekly_availabilities_on_work_id_and_weekday", unique: true
+    t.index ["work_id"], name: "index_weekly_availabilities_on_work_id"
+    t.check_constraint "hours BETWEEN 0 AND 24", name: "weekly_availabilities_hours_range"
+    t.check_constraint "weekday BETWEEN 0 AND 6", name: "weekly_availabilities_weekday_range"
+  end
+
   create_table "work_processes", force: :cascade do |t|
     t.integer "work_id", null: false
     t.string "name", null: false
@@ -65,6 +77,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_26_111816) do
   add_foreign_key "process_checks", "production_units"
   add_foreign_key "process_checks", "work_processes"
   add_foreign_key "production_units", "works"
+  add_foreign_key "weekly_availabilities", "works"
   add_foreign_key "work_processes", "works"
   add_foreign_key "works", "users"
 end

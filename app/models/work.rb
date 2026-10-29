@@ -9,6 +9,7 @@ class Work < ApplicationRecord
   has_many :work_processes, -> { order(:position) }, dependent: :destroy
   has_many :production_units, -> { order(:position) }, dependent: :destroy
   has_many :process_checks, through: :production_units
+  has_many :weekly_availabilities, dependent: :destroy
 
   before_destroy :mark_as_destroying, prepend: true
   after_create :create_initial_records
