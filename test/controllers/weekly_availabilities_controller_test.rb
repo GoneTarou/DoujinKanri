@@ -51,6 +51,23 @@ class WeeklyAvailabilitiesControllerTest < ActionDispatch::IntegrationTest
     assert_equal 4, weekly_availability.reload.hours
   end
 
+  test "作業可能時間が24時間を超える場合は更新できない" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+    weekly_availability = work.weekly_availabilities.create!(
+      weekday: 5,
+      hours: 1
+    )
+
+    patch work_weekly_availability_path(work, weekly_availability), params: {
+      weekly_availability: { hours: 25 }
+    }
+
+    assert_response :unprocessable_entity
+    assert_select "[role='alert']", "作業可能時間は0〜24時間で入力してください。"
+    assert_equal 1, weekly_availability.reload.hours
+  end
+
   test "ログイン済みのゲストは曜日別予定の編集画面を開ける" do
     user = sign_in_as_guest
     work = Work.create!(work_attributes.merge(user: user))

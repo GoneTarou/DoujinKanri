@@ -114,6 +114,10 @@
                   edit_work_path(@work),
                   class: "btn btn-outline" %>
 
+      <%= link_to "作業可能時間を編集",
+                  work_weekly_availabilities_path(@work),
+                  class: "btn btn-outline" %>
+
       <%= button_to "削除",
                     work_path(@work),
                     method: :delete,

@@ -18,6 +18,7 @@ class WeeklyAvailabilitiesController < ApplicationController
       redirect_to work_weekly_availabilities_path(@work),
                   notice: "作業可能時間を更新しました。"
     else
+      @error_message = "作業可能時間は0〜24時間で入力してください。"
       render :edit, status: :unprocessable_entity
     end
   end

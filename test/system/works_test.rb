@@ -23,8 +23,16 @@ class WorksTest < ApplicationSystemTestCase
 
     click_button "作品を作成する"
 
-    assert_text "作品を作成しました。"
+    complete_availability_setup
+
     assert_text "冬コミ新刊"
+
+    click_link "作業可能時間を編集"
+
+    assert_text "作業可能時間"
+    assert_text "週合計：12時間"
+    click_link "作品詳細へ戻る"
+
     assert_text "20"
 
     click_link "編集"
@@ -55,6 +63,8 @@ class WorksTest < ApplicationSystemTestCase
     set_date_field("制作開始日", "2026-10-24")
     set_date_field("締切", "2026-12-10")
     click_button "作品を作成する"
+
+    complete_availability_setup
 
     assert_text "完成：0 / 1"
     assert_text "残り：1"
@@ -88,6 +98,8 @@ class WorksTest < ApplicationSystemTestCase
     set_date_field("締切", "2026-12-10")
     click_button "作品を作成する"
 
+    complete_availability_setup
+
     click_button "仕上げを削除"
 
     assert_text "工程を削除しました。"
@@ -95,7 +107,47 @@ class WorksTest < ApplicationSystemTestCase
     assert_selector "button", text: /\A未完了\z/, count: 6
   end
 
+  test "ゲストユーザーは曜日別の作業可能時間を編集できる" do
+    visit root_path
+    click_button "ゲストとして始める"
+    assert_text "ゲストとして利用中です"
+
+    visit new_work_path
+    fill_in "作品名", with: "作業時間編集用の作品"
+    fill_in "総量", with: 1
+    set_date_field("制作開始日", "2026-10-24")
+    set_date_field("締切", "2026-12-10")
+    click_button "作品を作成する"
+
+    complete_availability_setup
+
+    click_link "作業可能時間を編集"
+
+    within("tr", text: "土曜日") do
+      click_link "編集"
+    end
+
+    assert_text "土曜日の作業可能時間"
+
+    fill_in "作業可能時間", with: 4
+    click_button "保存する"
+
+    assert_text "作業可能時間を更新しました。"
+    assert_text "週合計：15時間"
+  end
+
   private
+
+  def complete_availability_setup(total: 12)
+    assert_text "作業可能時間を設定"
+    assert_text "作品を作成しました。"
+
+    fill_in "週合計", with: total
+    click_button "曜日別の予定を作成する"
+
+    assert_text "週合計：#{total}時間"
+    click_link "作品詳細へ戻る"
+  end
 
   def set_date_field(label, value)
     field = find_field(label)
