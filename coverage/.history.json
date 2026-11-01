@@ -1,0 +1,211 @@
+{
+  "simplecov_history": {
+    "format_version": 1,
+    "entries": [
+      {
+        "created_at": "2026-11-01T07:29:27Z",
+        "branch": "layout",
+        "commit": "89b3127e4048ef63bbb59729fe6dff6fdcf59805",
+        "totals": {
+          "line": 95.6
+        },
+        "groups": {
+          "Controllers": {
+            "line": 94.85
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 100.0
+          }
+        },
+        "files": {
+          "app/controllers/application_controller.rb": {
+            "line": 100.0
+          },
+          "app/controllers/availability_setups_controller.rb": {
+            "line": 96.42
+          },
+          "app/controllers/guest_sessions_controller.rb": {
+            "line": 75.0
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 100.0
+          },
+          "app/controllers/process_checks_controller.rb": {
+            "line": 91.66
+          },
+          "app/controllers/weekly_availabilities_controller.rb": {
+            "line": 95.45
+          },
+          "app/controllers/work_processes_controller.rb": {
+            "line": 94.44
+          },
+          "app/controllers/works_controller.rb": {
+            "line": 97.67
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/availability_setups_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/guest_sessions_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/home_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/process_checks_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/weekly_availabilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/work_processes_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/works_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/process_check.rb": {
+            "line": 100.0
+          },
+          "app/models/production_unit.rb": {
+            "line": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          },
+          "app/models/weekly_availability.rb": {
+            "line": 100.0
+          },
+          "app/models/work.rb": {
+            "line": 100.0
+          },
+          "app/models/work_process.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-01T07:51:14Z",
+        "branch": "layout",
+        "commit": "0973de4725fcfd89b1957163dc149755044620ec",
+        "totals": {
+          "line": 95.6
+        },
+        "groups": {
+          "Controllers": {
+            "line": 94.85
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 100.0
+          }
+        },
+        "files": {
+          "app/controllers/application_controller.rb": {
+            "line": 100.0
+          },
+          "app/controllers/availability_setups_controller.rb": {
+            "line": 96.42
+          },
+          "app/controllers/guest_sessions_controller.rb": {
+            "line": 75.0
+          },
+          "app/controllers/home_controller.rb": {
+            "line": 100.0
+          },
+          "app/controllers/process_checks_controller.rb": {
+            "line": 91.66
+          },
+          "app/controllers/weekly_availabilities_controller.rb": {
+            "line": 95.45
+          },
+          "app/controllers/work_processes_controller.rb": {
+            "line": 94.44
+          },
+          "app/controllers/works_controller.rb": {
+            "line": 97.67
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/availability_setups_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/guest_sessions_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/home_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/process_checks_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/weekly_availabilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/work_processes_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/works_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/process_check.rb": {
+            "line": 100.0
+          },
+          "app/models/production_unit.rb": {
+            "line": 100.0
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          },
+          "app/models/weekly_availability.rb": {
+            "line": 100.0
+          },
+          "app/models/work.rb": {
+            "line": 100.0
+          },
+          "app/models/work_process.rb": {
+            "line": 100.0
+          }
+        }
+      }
+    ]
+  }
+}
