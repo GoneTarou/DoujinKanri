@@ -2,5 +2,6 @@
 set -o errexit
 
 bundle install
+npm ci
 bin/rails assets:precompile
 bin/rails db:prepare
