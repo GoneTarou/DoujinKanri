@@ -24,6 +24,14 @@
   </head>
 
   <body>
+    <header class="border-b border-base-300 bg-base-100">
+      <div class="mx-auto flex w-full max-w-4xl items-center px-5 py-4">
+        <%= link_to "しめきりノート",
+                    root_path,
+                    class: "text-xl font-bold text-primary" %>
+      </div>
+    </header>
+
     <% if notice.present? %>
       <div class="alert alert-success mx-auto mt-4 w-full max-w-3xl">
         <span><%= notice %></span>
@@ -36,7 +44,7 @@
       </div>
     <% end %>
 
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main class="container mx-auto mt-10 flex px-5">
       <%= yield %>
     </main>
   </body>

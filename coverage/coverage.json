@@ -3,24 +3,14 @@
   "meta": {
     "schema_version": "1.3",
     "simplecov_version": "1.3.2",
-    "command_name": "Minitest, Minitest (subprocess: 1), Minitest (subprocess: 10), Minitest (subprocess: 2), Minitest (subprocess: 3), Minitest (subprocess: 4), Minitest (subprocess: 5), Minitest (subprocess: 6), Minitest (subprocess: 7), Minitest (subprocess: 8), Minitest (subprocess: 9)",
+    "command_name": "Minitest",
     "command_names": [
-      "Minitest",
-      "Minitest (subprocess: 1)",
-      "Minitest (subprocess: 10)",
-      "Minitest (subprocess: 2)",
-      "Minitest (subprocess: 3)",
-      "Minitest (subprocess: 4)",
-      "Minitest (subprocess: 5)",
-      "Minitest (subprocess: 6)",
-      "Minitest (subprocess: 7)",
-      "Minitest (subprocess: 8)",
-      "Minitest (subprocess: 9)"
+      "Minitest"
     ],
     "project_name": "Sotu",
-    "timestamp": "2026-11-01T16:51:14.786+09:00",
+    "timestamp": "2026-11-01T19:31:36.862+09:00",
     "root": "/Users/sleepyslug/sotu",
-    "commit": "0973de4725fcfd89b1957163dc149755044620ec",
+    "commit": "706f491356042054a15e02f14a44785031f66da1",
     "primary_coverage": "line",
     "line_coverage": true,
     "branch_coverage": false,
@@ -28,12 +18,12 @@
   },
   "total": {
     "lines": {
-      "covered": 239,
-      "missed": 11,
+      "covered": 82,
+      "missed": 168,
       "omitted": 275,
       "total": 250,
-      "percent": 95.6,
-      "strength": 28.692
+      "percent": 32.8,
+      "strength": 0.328
     }
   },
   "coverage": {
@@ -48,12 +38,12 @@
         "end"
       ],
       "lines": [
-        10,
+        1,
         null,
-        10,
+        1,
         null,
         null,
-        10,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -123,67 +113,67 @@
         "end"
       ],
       "lines": [
-        5,
-        5,
-        5,
+        0,
+        0,
+        0,
         null,
-        5,
-        2,
-        null,
-        1,
-        null,
-        null,
-        5,
-        3,
-        1,
-        1,
-        null,
-        null,
-        2,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        7,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        5,
-        null,
-        5,
-        5,
+        0,
+        0,
         null,
         0,
         null,
         null,
-        5,
-        5,
+        0,
+        0,
+        0,
+        0,
         null,
         null,
-        5,
-        3,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        0,
         null,
         null,
         null,
         null,
         null,
-        5,
-        2,
+        null,
+        0,
+        null,
+        null,
+        0,
+        null,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0,
+        0,
         null,
         null
       ],
-      "lines_covered_percent": 96.42857142857143,
-      "covered_lines": 27,
-      "missed_lines": 1,
+      "lines_covered_percent": 0.0,
+      "covered_lines": 0,
+      "missed_lines": 28,
       "omitted_lines": 29,
       "total_lines": 28
     },
@@ -205,18 +195,18 @@
         "end"
       ],
       "lines": [
-        10,
-        10,
-        31,
+        1,
+        1,
+        1,
         0,
         0,
         null,
         null,
-        31,
+        1,
         null,
-        31,
+        1,
         null,
-        31,
+        1,
         null,
         null
       ],
@@ -234,8 +224,8 @@
         "end"
       ],
       "lines": [
-        2,
-        2,
+        1,
+        1,
         null,
         null
       ],
@@ -272,33 +262,33 @@
         "end"
       ],
       "lines": [
-        2,
-        2,
+        0,
+        0,
         null,
-        2,
-        2,
+        0,
+        0,
         null,
-        1,
-        null,
-        1,
-        null,
-        null,
-        2,
-        null,
-        2,
-        2,
+        0,
         null,
         0,
         null,
         null,
-        2,
-        1,
+        0,
+        null,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        0,
+        0,
         null,
         null
       ],
-      "lines_covered_percent": 91.66666666666667,
-      "covered_lines": 11,
-      "missed_lines": 1,
+      "lines_covered_percent": 0.0,
+      "covered_lines": 0,
+      "missed_lines": 12,
       "omitted_lines": 11,
       "total_lines": 12
     },
@@ -347,51 +337,51 @@
         "end"
       ],
       "lines": [
-        4,
-        4,
-        4,
+        0,
+        0,
+        0,
         null,
-        4,
-        1,
-        1,
-        null,
-        null,
-        4,
-        1,
+        0,
+        0,
+        0,
         null,
         null,
-        4,
-        2,
-        null,
-        2,
-        1,
+        0,
+        0,
         null,
         null,
-        1,
-        1,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
         null,
         null,
         null,
-        4,
+        0,
         null,
-        4,
-        4,
+        0,
+        0,
         null,
         0,
         null,
         null,
-        4,
-        4,
+        0,
+        0,
         null,
         null,
-        4,
-        2,
+        0,
+        0,
         null,
         null
       ],
-      "lines_covered_percent": 95.45454545454545,
-      "covered_lines": 21,
-      "missed_lines": 1,
+      "lines_covered_percent": 0.0,
+      "covered_lines": 0,
+      "missed_lines": 22,
       "omitted_lines": 19,
       "total_lines": 22
     },
@@ -433,44 +423,44 @@
         "end"
       ],
       "lines": [
-        3,
-        3,
-        3,
+        0,
+        0,
+        0,
         null,
-        3,
-        1,
+        0,
+        0,
         null,
-        1,
-        1,
+        0,
+        0,
         null,
         0,
         null,
         null,
         null,
-        3,
-        2,
+        0,
+        0,
         null,
-        2,
-        1,
+        0,
+        0,
         null,
-        1,
-        null,
-        null,
-        null,
-        3,
-        null,
-        3,
-        3,
+        0,
         null,
         null,
-        3,
-        1,
+        null,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
         null,
         null
       ],
-      "lines_covered_percent": 94.44444444444444,
-      "covered_lines": 17,
-      "missed_lines": 1,
+      "lines_covered_percent": 0.0,
+      "covered_lines": 0,
+      "missed_lines": 18,
       "omitted_lines": 16,
       "total_lines": 18
     },
@@ -578,89 +568,89 @@
         "end"
       ],
       "lines": [
-        9,
-        9,
-        9,
-        9,
-        1,
+        0,
+        0,
+        0,
+        0,
+        0,
         null,
         null,
-        9,
-        2,
-        null,
-        null,
-        null,
-        null,
-        null,
-        9,
-        2,
-        null,
-        2,
-        1,
-        null,
-        null,
-        1,
+        0,
+        0,
         null,
         null,
         null,
-        9,
         null,
         null,
-        9,
+        0,
+        0,
         null,
+        0,
+        0,
         null,
-        9,
-        4,
-        1,
-        1,
-        3,
-        3,
         null,
         0,
         null,
         null,
         null,
-        9,
-        1,
-        null,
-        1,
+        0,
         null,
         null,
-        9,
-        null,
-        9,
-        17,
-        null,
-        1,
+        0,
         null,
         null,
-        9,
-        11,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         null,
-        null,
-        9,
-        4,
-        null,
-        3,
-        null,
-        3,
+        0,
         null,
         null,
         null,
-        9,
-        1,
-        1,
-        1,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        0,
+        null,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
         null,
         null,
         null,
-        1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        0,
         null,
         null,
         null,
         null,
-        9,
-        2,
+        0,
+        0,
         null,
         null,
         null,
@@ -669,8 +659,8 @@
         null,
         null,
         null,
-        9,
-        7,
+        0,
+        0,
         null,
         null,
         null,
@@ -679,9 +669,9 @@
         null,
         null
       ],
-      "lines_covered_percent": 97.67441860465117,
-      "covered_lines": 42,
-      "missed_lines": 1,
+      "lines_covered_percent": 0.0,
+      "covered_lines": 0,
+      "missed_lines": 43,
       "omitted_lines": 57,
       "total_lines": 43
     },
@@ -691,7 +681,7 @@
         "end"
       ],
       "lines": [
-        10,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -706,7 +696,7 @@
         "end"
       ],
       "lines": [
-        10,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -721,7 +711,7 @@
         "end"
       ],
       "lines": [
-        10,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -736,7 +726,7 @@
         "end"
       ],
       "lines": [
-        10,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -751,7 +741,7 @@
         "end"
       ],
       "lines": [
-        10,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -766,7 +756,7 @@
         "end"
       ],
       "lines": [
-        10,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -781,7 +771,7 @@
         "end"
       ],
       "lines": [
-        10,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -796,7 +786,7 @@
         "end"
       ],
       "lines": [
-        10,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -856,8 +846,8 @@
         "end"
       ],
       "lines": [
-        10,
-        10,
+        1,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -888,28 +878,28 @@
         "end"
       ],
       "lines": [
-        10,
-        10,
-        10,
-        null,
-        10,
-        null,
-        null,
-        10,
-        null,
-        10,
-        null,
-        10,
-        1198,
-        1198,
+        1,
+        1,
+        1,
         null,
         1,
         null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        0,
+        0,
+        null,
+        0,
+        null,
         null
       ],
-      "lines_covered_percent": 100.0,
-      "covered_lines": 10,
-      "missed_lines": 0,
+      "lines_covered_percent": 70.0,
+      "covered_lines": 7,
+      "missed_lines": 3,
       "omitted_lines": 8,
       "total_lines": 10
     },
@@ -933,15 +923,15 @@
         "end"
       ],
       "lines": [
-        10,
-        10,
-        10,
+        1,
+        1,
+        1,
         null,
-        10,
-        132,
+        1,
+        0,
         null,
         null,
-        10,
+        1,
         null,
         null,
         null,
@@ -950,9 +940,9 @@
         null,
         null
       ],
-      "lines_covered_percent": 100.0,
-      "covered_lines": 6,
-      "missed_lines": 0,
+      "lines_covered_percent": 83.33333333333333,
+      "covered_lines": 5,
+      "missed_lines": 1,
       "omitted_lines": 10,
       "total_lines": 6
     },
@@ -967,12 +957,12 @@
         "end"
       ],
       "lines": [
-        10,
-        10,
+        1,
+        1,
         null,
-        10,
-        10,
-        10,
+        1,
+        1,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -1014,39 +1004,39 @@
         "end"
       ],
       "lines": [
-        10,
-        10,
+        1,
+        1,
         null,
-        10,
-        7,
+        1,
+        0,
         null,
-        7,
-        49,
+        0,
+        0,
         null,
-        49,
-        null,
-        null,
-        null,
-        10,
+        0,
         null,
         null,
         null,
-        null,
-        null,
-        null,
-        10,
+        1,
         null,
         null,
         null,
         null,
         null,
         null,
-        10,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
         null
       ],
-      "lines_covered_percent": 100.0,
-      "covered_lines": 10,
-      "missed_lines": 0,
+      "lines_covered_percent": 60.0,
+      "covered_lines": 6,
+      "missed_lines": 4,
       "omitted_lines": 19,
       "total_lines": 10
     },
@@ -1169,125 +1159,125 @@
         "end"
       ],
       "lines": [
-        10,
-        null,
-        10,
-        null,
-        null,
-        null,
-        null,
-        10,
-        125,
-        153,
-        10,
-        10,
-        null,
-        10,
-        10,
-        null,
-        10,
-        null,
-        10,
-        null,
-        null,
-        null,
-        null,
-        null,
-        10,
-        10,
-        null,
-        null,
-        null,
-        null,
-        null,
-        10,
-        null,
-        10,
-        null,
-        10,
-        12,
-        null,
-        null,
-        10,
-        4,
-        null,
-        null,
-        10,
-        4,
-        null,
-        4,
-        null,
-        null,
-        10,
-        13,
-        null,
-        null,
-        10,
-        null,
-        10,
         1,
-        null,
-        null,
-        10,
-        66,
-        64,
         null,
         1,
         null,
         null,
-        10,
-        48,
-        193,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
         null,
         null,
         null,
         null,
         null,
         null,
-        10,
-        48,
-        290,
+        1,
+        0,
+        0,
         null,
         null,
         null,
-        10,
-        48,
-        48,
-        48,
+        1,
+        0,
+        0,
+        0,
         null,
         null,
-        10,
-        48,
-        290,
-        null,
-        null,
-        null,
-        10,
-        295,
-        1190,
+        1,
+        0,
+        0,
         null,
         null,
         null,
+        1,
+        0,
+        0,
         null,
         null,
         null,
-        10,
-        4,
-        null,
-        4,
-        2,
-        5,
-        5,
         null,
         null,
-        2,
+        null,
+        1,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        null,
+        0,
         null,
         null,
         null
       ],
-      "lines_covered_percent": 100.0,
-      "covered_lines": 54,
-      "missed_lines": 0,
+      "lines_covered_percent": 51.851851851851855,
+      "covered_lines": 28,
+      "missed_lines": 26,
       "omitted_lines": 61,
       "total_lines": 54
     },
@@ -1325,40 +1315,40 @@
         "end"
       ],
       "lines": [
-        10,
-        10,
-        10,
+        1,
+        1,
+        1,
         null,
-        10,
-        10,
+        1,
+        1,
         null,
-        10,
-        10,
-        null,
-        null,
-        null,
-        10,
-        null,
-        10,
-        196,
-        4,
+        1,
+        1,
         null,
         null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        0,
         null,
         null,
         null,
         null,
-        10,
-        13,
         null,
-        2,
-        2,
+        null,
+        1,
+        0,
+        null,
+        0,
+        0,
         null,
         null
       ],
-      "lines_covered_percent": 100.0,
-      "covered_lines": 15,
-      "missed_lines": 0,
+      "lines_covered_percent": 66.66666666666667,
+      "covered_lines": 10,
+      "missed_lines": 5,
       "omitted_lines": 15,
       "total_lines": 15
     }
@@ -1366,12 +1356,12 @@
   "groups": {
     "Controllers": {
       "lines": {
-        "covered": 129,
-        "missed": 7,
+        "covered": 11,
+        "missed": 125,
         "omitted": 144,
         "total": 136,
-        "percent": 94.8529411764706,
-        "strength": 4.485294117647059
+        "percent": 8.088235294117647,
+        "strength": 0.08088235294117647
       },
       "files": [
         "app/controllers/application_controller.rb",
@@ -1391,7 +1381,7 @@
         "omitted": 8,
         "total": 8,
         "percent": 100.0,
-        "strength": 10.0
+        "strength": 1.0
       },
       "files": [
         "app/helpers/application_helper.rb",
@@ -1432,12 +1422,12 @@
     },
     "Models": {
       "lines": {
-        "covered": 102,
-        "missed": 0,
+        "covered": 63,
+        "missed": 39,
         "omitted": 116,
         "total": 102,
-        "percent": 100.0,
-        "strength": 63.55882352941177
+        "percent": 61.76470588235294,
+        "strength": 0.6176470588235294
       },
       "files": [
         "app/models/application_record.rb",
@@ -1653,6 +1643,312 @@
         },
         "app/models/work_process.rb": {
           "line": 100.0
+        }
+      }
+    },
+    {
+      "created_at": "2026-11-01T09:58:16Z",
+      "branch": "amend",
+      "commit": "355d46c4cd75b52e96d9327e8588a75f3e60ba81",
+      "totals": {
+        "line": 32.8
+      },
+      "groups": {
+        "Controllers": {
+          "line": 8.08
+        },
+        "Helpers": {
+          "line": 100.0
+        },
+        "Jobs": {
+          "line": 0.0
+        },
+        "Mailers": {
+          "line": 0.0
+        },
+        "Models": {
+          "line": 61.76
+        }
+      },
+      "files": {
+        "app/controllers/application_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/availability_setups_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/guest_sessions_controller.rb": {
+          "line": 75.0
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/process_checks_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/weekly_availabilities_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/work_processes_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/works_controller.rb": {
+          "line": 0.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/availability_setups_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/guest_sessions_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/home_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/process_checks_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/weekly_availabilities_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/work_processes_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/works_helper.rb": {
+          "line": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 0.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 0.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0
+        },
+        "app/models/process_check.rb": {
+          "line": 70.0
+        },
+        "app/models/production_unit.rb": {
+          "line": 83.33
+        },
+        "app/models/user.rb": {
+          "line": 100.0
+        },
+        "app/models/weekly_availability.rb": {
+          "line": 60.0
+        },
+        "app/models/work.rb": {
+          "line": 51.85
+        },
+        "app/models/work_process.rb": {
+          "line": 66.66
+        }
+      }
+    },
+    {
+      "created_at": "2026-11-01T10:15:44Z",
+      "branch": "amend",
+      "commit": "706f491356042054a15e02f14a44785031f66da1",
+      "totals": {
+        "line": 32.8
+      },
+      "groups": {
+        "Controllers": {
+          "line": 8.08
+        },
+        "Helpers": {
+          "line": 100.0
+        },
+        "Jobs": {
+          "line": 0.0
+        },
+        "Mailers": {
+          "line": 0.0
+        },
+        "Models": {
+          "line": 61.76
+        }
+      },
+      "files": {
+        "app/controllers/application_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/availability_setups_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/guest_sessions_controller.rb": {
+          "line": 75.0
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/process_checks_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/weekly_availabilities_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/work_processes_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/works_controller.rb": {
+          "line": 0.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/availability_setups_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/guest_sessions_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/home_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/process_checks_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/weekly_availabilities_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/work_processes_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/works_helper.rb": {
+          "line": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 0.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 0.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0
+        },
+        "app/models/process_check.rb": {
+          "line": 70.0
+        },
+        "app/models/production_unit.rb": {
+          "line": 83.33
+        },
+        "app/models/user.rb": {
+          "line": 100.0
+        },
+        "app/models/weekly_availability.rb": {
+          "line": 60.0
+        },
+        "app/models/work.rb": {
+          "line": 51.85
+        },
+        "app/models/work_process.rb": {
+          "line": 66.66
+        }
+      }
+    },
+    {
+      "created_at": "2026-11-01T10:31:36Z",
+      "branch": "amend",
+      "commit": "706f491356042054a15e02f14a44785031f66da1",
+      "totals": {
+        "line": 32.8
+      },
+      "groups": {
+        "Controllers": {
+          "line": 8.08
+        },
+        "Helpers": {
+          "line": 100.0
+        },
+        "Jobs": {
+          "line": 0.0
+        },
+        "Mailers": {
+          "line": 0.0
+        },
+        "Models": {
+          "line": 61.76
+        }
+      },
+      "files": {
+        "app/controllers/application_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/availability_setups_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/guest_sessions_controller.rb": {
+          "line": 75.0
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 100.0
+        },
+        "app/controllers/process_checks_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/weekly_availabilities_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/work_processes_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/works_controller.rb": {
+          "line": 0.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/availability_setups_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/guest_sessions_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/home_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/process_checks_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/weekly_availabilities_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/work_processes_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/works_helper.rb": {
+          "line": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 0.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 0.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0
+        },
+        "app/models/process_check.rb": {
+          "line": 70.0
+        },
+        "app/models/production_unit.rb": {
+          "line": 83.33
+        },
+        "app/models/user.rb": {
+          "line": 100.0
+        },
+        "app/models/weekly_availability.rb": {
+          "line": 60.0
+        },
+        "app/models/work.rb": {
+          "line": 51.85
+        },
+        "app/models/work_process.rb": {
+          "line": 66.66
         }
       }
     }
