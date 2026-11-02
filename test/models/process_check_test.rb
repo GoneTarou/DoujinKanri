@@ -50,5 +50,6 @@ class ProcessCheckTest < ActiveSupport::TestCase
 
     assert_not process_check.valid?
     assert process_check.errors[:base].present?
+    assert_includes process_check.errors[:base], "制作対象と工程は同じ作品に属している必要があります"
   end
 end

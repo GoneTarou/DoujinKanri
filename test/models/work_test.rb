@@ -72,6 +72,13 @@ class WorkTest < ActiveSupport::TestCase
     assert work.errors[:title].present?
   end
 
+  test "作品の属性名を日本語で表示する" do
+    work = build_work(title: "")
+
+    assert_not work.valid?
+    assert_includes work.errors.full_messages, "作品名を入力してください"
+  end
+
   test "開始日が未設定の場合は無効である" do
     work = build_work(start_date: nil)
 
@@ -94,6 +101,7 @@ class WorkTest < ActiveSupport::TestCase
 
     assert_not work.valid?
     assert work.errors[:deadline].present?
+    assert_includes work.errors.full_messages, "締切は制作開始日以降にしてください"
   end
 
   test "漫画を作成すると標準工程が順番に作成される" do

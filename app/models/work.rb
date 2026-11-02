@@ -61,7 +61,7 @@ class Work < ApplicationRecord
     return if start_date.blank? || deadline.blank?
     return if deadline >= start_date
 
-    errors.add(:deadline, "は開始日以降にしてください")
+    errors.add(:deadline, :on_or_after_start_date)
   end
 
   def create_default_work_processes
