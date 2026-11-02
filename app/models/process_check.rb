@@ -13,6 +13,6 @@ class ProcessCheck < ApplicationRecord
     return if production_unit.blank? || work_process.blank?
     return if production_unit.work_id == work_process.work_id
 
-    errors.add(:base, "制作対象と工程は同じ作品に属している必要があります")
+    errors.add(:base, :work_mismatch)
   end
 end

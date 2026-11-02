@@ -1,0 +1,43 @@
+ja:
+  activerecord:
+    models:
+      work: 作品
+      work_process: 工程
+      production_unit: 制作対象
+      process_check: 工程チェック
+      weekly_availability: 作業可能時間
+
+    attributes:
+      work:
+        title: 作品名
+        work_type: 作品種別
+        total_quantity: 総量
+        start_date: 制作開始日
+        deadline: 締切
+      work_process:
+        name: 工程名
+        position: 工程の順番
+      production_unit:
+        position: 制作対象の順番
+      process_check:
+        production_unit: 制作対象
+        work_process: 工程
+        checked: 完了状態
+      weekly_availability:
+        weekday: 曜日
+        hours: 作業可能時間
+
+    errors:
+      models:
+        work:
+          attributes:
+            deadline:
+              on_or_after_start_date: "は制作開始日以降にしてください"
+        work_process:
+          attributes:
+            base:
+              at_least_one_work_process: "工程は1つ以上必要です"
+        process_check:
+          attributes:
+            base:
+              work_mismatch: "制作対象と工程は同じ作品に属している必要があります"

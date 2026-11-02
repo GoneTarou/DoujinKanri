@@ -24,7 +24,7 @@ class WorkProcess < ApplicationRecord
   def ensure_not_last_process
     return if work.destroying? || work.work_processes.where.not(id: id).exists?
 
-    errors.add(:base, "工程は1つ以上必要です")
+    errors.add(:base, :at_least_one_work_process)
     throw :abort
   end
 end
