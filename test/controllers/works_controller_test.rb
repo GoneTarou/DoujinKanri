@@ -92,7 +92,24 @@ class WorksControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :unprocessable_entity
     assert_select "h1", "新しい作品を作成"
-    assert_select "[role='alert']"
+    assert_select "[role='alert']" do
+      assert_select "li", "総量は1以上の値にしてください"
+    end
+  end
+
+  test "作品名が未入力の場合は日本語のエラーを表示する" do
+    sign_in_as_guest
+
+    assert_no_difference -> { Work.count } do
+      post works_path, params: {
+        work: work_attributes.merge(title: "")
+      }
+    end
+
+    assert_response :unprocessable_entity
+    assert_select "[role='alert']" do
+      assert_select "li", "作品名を入力してください"
+    end
   end
 
   test "ログイン済みのゲストは自分の作品の編集画面を開ける" do

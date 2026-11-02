@@ -38,6 +38,23 @@ class WorkProcessesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to work_path(work)
   end
 
+  test "工程名が未入力の場合は日本語のエラーを表示する" do
+    user = sign_in_as_guest
+    work = Work.create!(work_attributes.merge(user: user))
+
+    assert_no_difference -> { WorkProcess.count } do
+      post work_work_processes_path(work), params: {
+        work_process: {
+          name: "",
+          position: 5
+        }
+      }
+    end
+
+    assert_redirected_to work_path(work)
+    assert_equal "工程名を入力してください", flash[:alert]
+  end
+
   test "ログイン済みのゲストは自分の作品の工程を削除できる" do
     user = sign_in_as_guest
     work = Work.create!(work_attributes.merge(user: user))
